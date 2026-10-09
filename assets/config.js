@@ -14,7 +14,7 @@
    ===================================================================== */
 window.CSE_CONFIG = {
   firebaseURL: "https://cse-epsc-default-rtdb.europe-west1.firebasedatabase.app/",
-  voteBaseURL: "",
+  voteBaseURL: "https://z42maruc.github.io/cse-presentaciones/",
   asignatura: "Circuitos y Sistemas Electrónicos",
   curso: "2026/2027"
 };
