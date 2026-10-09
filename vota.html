@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Votación CSE · EPSC</title>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<style>
+  :root { --indigo:#280091; --azul:#445ba6; --azul2:#4c5cc5; --verde:#00b299; --teal:#009e91; --cian:#3fcfd5; --cian-claro:#9fe3e6; --linea:#dfe3f3; --suave:#f4f6fd; --tinta:#22223a; --gris:#6b6f86; --bad:#d23c4b; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:"Source Sans 3", system-ui, sans-serif; color:var(--tinta); background:#fff; }
+  header { display:flex; align-items:center; justify-content:space-between; padding: 10px 16px; border-bottom: 3px solid var(--cian-claro); }
+  header img.l { height: 38px; } header img.m { height: 38px; }
+  main { max-width: 640px; margin: 0 auto; padding: 16px 16px 90px; }
+  h1 { font: 900 26px/1.15 Archivo, sans-serif; color: var(--azul); margin: 8px 0 2px; }
+  .sub { color: var(--teal); font: 800 14px Archivo; text-transform: uppercase; letter-spacing: .05em; }
+  .q { margin: 22px 0; padding: 14px; border: 1px solid var(--linea); border-radius: 12px; border-top: 6px solid var(--cian); }
+  .q .n { font: 800 13px Archivo; color: var(--teal); text-transform: uppercase; }
+  .q .t { font-weight: 700; font-size: 19px; margin: 4px 0 10px; }
+  .op { display:flex; gap: 10px; align-items:center; width:100%; text-align:left; padding: 12px; margin: 6px 0; border: 2px solid var(--linea); border-radius: 10px; background:#fff; font: 600 17px "Source Sans 3"; color: var(--tinta); cursor:pointer; }
+  .op .l { flex: 0 0 30px; height: 30px; border-radius: 6px; display:grid; place-items:center; background: var(--suave); color: var(--indigo); font: 900 15px Archivo; }
+  .op.sel { border-color: var(--azul2); background: #eef0fb; }
+  .op.sel .l { background: var(--azul2); color:#fff; }
+  .escala { display:flex; gap: 6px; } .escala .op { justify-content:center; padding: 12px 0; }
+  .escala .op .l { display:none; }
+  .q.ok .op.correcta { border-color: var(--verde); background:#e6f7f2; }
+  .q.ok .op.sel:not(.correcta) { border-color: var(--bad); background:#fdeef0; }
+  .exp { display:none; margin-top: 8px; font-size: 15px; background:#eefaf7; border-left: 5px solid var(--verde); padding: 8px 10px; border-radius: 6px; }
+  .q.ok .exp { display:block; }
+  .barra { position: fixed; left:0; right:0; bottom:0; padding: 12px 16px; background: #fff; border-top: 1px solid var(--linea); display:flex; gap: 12px; align-items:center; justify-content: center; }
+  button.env { border:0; font: 800 19px Archivo; color:#fff; background: var(--verde); padding: 14px 28px; border-radius: 10px; cursor:pointer; width: 100%; max-width: 640px; }
+  button.env:disabled { background: #b9c0d8; }
+  .aviso { padding: 12px 14px; border-radius: 10px; margin: 14px 0; font-weight: 600; }
+  .aviso.ok { background:#e6f7f2; color:#005e4c; } .aviso.info { background:#eef0fb; color: var(--indigo); } .aviso.bad { background:#fdeef0; color:#8c1d2a; }
+  .nota { font: 900 48px Archivo; color: var(--teal); }
+</style>
+<script src="assets/config.js"></script>
+<script src="assets/preguntas.js"></script>
+</head>
+<body>
+<header><img class="l" src="assets/img/logo-epsc.png" alt="EPSC"><img class="m" src="assets/img/logo-uco.png" alt="Universidad de Córdoba"></header>
+<main id="app"></main>
+<div class="barra"><button class="env" id="env" disabled>Enviar respuestas</button></div>
+<script>
+(function () {
+  const P = new URLSearchParams(location.search);
+  const p = P.get('p') || 'P1', b = P.get('b') || 'inicial', s = (P.get('s') || 'demo').replace(/[.#$\[\]\/\s]+/g, '-');
+  const CFG = window.CSE_CONFIG || {}; const FB = (CFG.firebaseURL || '').replace(/\/+$/, '');
+  const banco = (window.CSE_PREGUNTAS[p] || {})[b];
+  const app = document.getElementById('app'), env = document.getElementById('env');
+  const KEY = 'cse_voto_' + p + '_' + b + '_' + s;
+  const L = 'ABCDEFGH';
+  function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  if (!banco) { app.innerHTML = '<div class="aviso bad">Este enlace no corresponde a ninguna votación.</div>'; env.hidden = true; return; }
+  const resp = banco.preguntas.map(() => -1);
+  app.innerHTML = `<div class="sub">${CFG.asignatura || ''} · ${(window.CSE_PREGUNTAS[p].titulo) || p}</div><h1>${banco.titulo}</h1>
+    <div class="muted" style="color:var(--gris)">Respuestas anónimas. Elige una opción en cada pregunta y pulsa "Enviar".</div>
+    ${FB ? '' : '<div class="aviso info">Votación en modo de prueba: tus respuestas no se enviarán a la presentación.</div>'}
+    ${ls(KEY) ? '<div class="aviso info">Ya respondiste esta votación desde este móvil. Puedes volver a hacerlo, pero sólo cuenta si tu profesora lo indica.</div>' : ''}
+    <div id="qs"></div><div id="fin"></div>`;
+  const qs = document.getElementById('qs');
+  banco.preguntas.forEach((q, i) => {
+    const d = document.createElement('div'); d.className = 'q';
+    const esc = q.tipo === 'confianza';
+    d.innerHTML = `<div class="n">${esc ? 'Tu opinión' : 'Pregunta ' + (i + 1)}</div><div class="t">${q.q}</div>
+      <div class="${esc ? 'escala' : ''}">${q.opts.map((o, j) => `<button class="op ${j === q.ok ? 'correcta' : ''}" data-j="${j}"><span class="l">${L[j]}</span><span>${esc ? o.replace(/ ·.*/, '') : o}</span></button>`).join('')}</div>
+      ${q.exp ? '<div class="exp"><b>Solución:</b> ' + q.exp + '</div>' : ''}`;
+    d.querySelectorAll('.op').forEach(bt => bt.addEventListener('click', () => {
+      if (env.dataset.enviado) return;
+      d.querySelectorAll('.op').forEach(x => x.classList.remove('sel')); bt.classList.add('sel');
+      resp[i] = +bt.dataset.j; env.disabled = resp.some(r => r < 0);
+    }));
+    qs.appendChild(d);
+  });
+  env.addEventListener('click', async () => {
+    env.disabled = true; env.textContent = 'Enviando…';
+    const fin = document.getElementById('fin');
+    try {
+      if (FB) {
+        const r = await fetch(`${FB}/cse/${encodeURIComponent(p)}/${encodeURIComponent(b)}/${encodeURIComponent(s)}.json`, { method: 'POST', body: JSON.stringify({ r: resp, t: Date.now() }) });
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+      }
+      ls(KEY, '1'); env.dataset.enviado = '1'; env.textContent = '¡Enviado!';
+      if (b === 'final') {
+        let ok = 0, n = 0; banco.preguntas.forEach((q, i) => { if (q.ok !== null && q.ok !== undefined) { n++; if (resp[i] === q.ok) ok++; } });
+        document.querySelectorAll('.q').forEach((x, i) => { const q = banco.preguntas[i]; if (q.ok !== null && q.ok !== undefined) x.classList.add('ok'); });
+        fin.innerHTML = `<div class="aviso ok">¡Gracias! Has acertado <span class="nota">${ok}/${n}</span><br>Revisa arriba las soluciones.</div>`;
+      } else {
+        fin.innerHTML = '<div class="aviso ok">¡Gracias! Mira la pantalla para ver los resultados de la clase.</div>';
+      }
+      fin.scrollIntoView({ behavior: 'smooth' });
+    } catch (e) {
+      env.disabled = false; env.textContent = 'Reintentar envío';
+      fin.innerHTML = '<div class="aviso bad">No se ha podido enviar. Comprueba la conexión y vuelve a intentarlo.</div>';
+    }
+  });
+})();
+</script>
+</body>
+</html>
