@@ -1,0 +1,968 @@
+[
+  {
+    "objectID": "P6_Amplificador_operacional.html#hoja-de-ruta",
+    "href": "P6_Amplificador_operacional.html#hoja-de-ruta",
+    "title": "",
+    "section": "Hoja de ruta",
+    "text": "Hoja de ruta\n\n\nEl “comodín” de la electrónica analógica\n\nAmplifica la señal del micrófono de tu portátil antes de digitalizarla.\nAdapta la señal de un sensor (temperatura, luz) al rango del convertidor de un microcontrolador.\nEstá en el control industrial, la instrumentación médica, las telecomunicaciones y el audio.\n\n\nObjetivos Conocer el amplificador operacional y sus parámetros · comprender la realimentación negativa y el cortocircuito virtual · analizar el inversor, el no inversor y el seguidor.\n\n\n\n\n  1 · Encuesta inicialEscanea el QR: ¿qué sabes ya?\n  2 · El operacionalLM741, ideal frente a real y cortocircuito virtual.\n  3 · ConfiguracionesInversor, no inversor y seguidor en el osciloscopio.\n  4 · LímitesSaturación, ancho de banda e impedancias.\n  5 · Laboratorio, aplicaciones y examenY encuesta final para comparar."
+  },
+  {
+    "objectID": "P6_Amplificador_operacional.html#qué-sabes-ya-escanea-el-qr-resultados-en-directo",
+    "href": "P6_Amplificador_operacional.html#qué-sabes-ya-escanea-el-qr-resultados-en-directo",
+    "title": "",
+    "section": "¿Qué sabes ya? Escanea el QR · resultados en directo",
+    "text": "¿Qué sabes ya? Escanea el QR · resultados en directo"
+  },
+  {
+    "objectID": "P6_Amplificador_operacional.html#el-lm741",
+    "href": "P6_Amplificador_operacional.html#el-lm741",
+    "title": "",
+    "section": "El LM741",
+    "text": "El LM741\n\n\n\n  \n  \n  \n    \n    \n  \n  1234\n  5678\n  offsetentrada − (inversora)entrada + (no inversora)−VCC (−15 V)\n  no conectada+VCC (+15 V)salidaoffset\n\n\n\n\n\n\nParámetro\nIdeal\nLM741 (típico)\n\n\n\n\nGanancia en lazo abierto A\n∞\n≈ 200 000\n\n\nImpedancia de entrada Ze\n∞\n≈ 2 MΩ\n\n\nImpedancia de salida Zs\n0\n≈ 75 Ω\n\n\nAncho de banda\n∞\nGBW ≈ 1 MHz\n\n\nTensión de salida máxima\n±VCC\n≈ ±13,5 V con ±15 V\n\n\n\n\nTres formas de usarlo Lazo abierto: comparador (satura) · realimentación positiva: Schmitt · realimentación negativa: ganancia estable fijada por resistencias. Es la de esta práctica."
+  },
+  {
+    "objectID": "P6_Amplificador_operacional.html#el-cortocircuito-virtual-simulador",
+    "href": "P6_Amplificador_operacional.html#el-cortocircuito-virtual-simulador",
+    "title": "",
+    "section": "El cortocircuito virtual Simulador",
+    "text": "El cortocircuito virtual Simulador"
+  },
+  {
+    "objectID": "P6_Amplificador_operacional.html#inversor-no-inversor-y-seguidor-simulador",
+    "href": "P6_Amplificador_operacional.html#inversor-no-inversor-y-seguidor-simulador",
+    "title": "",
+    "section": "Inversor, no inversor y seguidor Simulador",
+    "text": "Inversor, no inversor y seguidor Simulador"
+  },
+  {
+    "objectID": "P6_Amplificador_operacional.html#las-fórmulas",
+    "href": "P6_Amplificador_operacional.html#las-fórmulas",
+    "title": "",
+    "section": "Las fórmulas",
+    "text": "Las fórmulas\n\nInversorNo inversorSeguidor\n\n\n\n\nV+ = 0, luego V− ≈ 0 (masa virtual). La corriente Ve/R1 no entra en el AO y recorre R2:\n\\[A_v=\\frac{V_s}{V_e}=-\\frac{R_2}{R_1}\\qquad Z_e\\approx R_1\\qquad R_3=R_1\\|R_2\\]\n\n\nQué verás Una senoidal de amplitud B·R2/R1 desfasada 180°. R3 compensa las corrientes de polarización.\n\n\n\n\n\n\nLa señal entra por V+. R1 y R2 dividen la salida: V− = Vs·R1/(R1 + R2) = Ve.\n\\[A_v=1+\\frac{R_2}{R_1}\\qquad Z_e\\ \\text{muy elevada}\\]\n\n\nQué verás La salida en fase con la entrada, y nunca con ganancia menor que 1.\n\n\n\n\n\n\nUn no inversor con R2 = 0 y R1 = ∞:\n\\[A_v=1\\]\nNo amplifica, pero Ze es muy alta y Zs muy baja.\n\n\nPara qué sirve Para conectar una fuente débil (un sensor) a una carga sin que la tensión caiga. Lo verás en la sección de límites."
+  },
+  {
+    "objectID": "P6_Amplificador_operacional.html#ancho-de-banda-simulador",
+    "href": "P6_Amplificador_operacional.html#ancho-de-banda-simulador",
+    "title": "",
+    "section": "Ancho de banda Simulador",
+    "text": "Ancho de banda Simulador"
+  },
+  {
+    "objectID": "P6_Amplificador_operacional.html#impedancias-para-qué-sirve-una-ganancia-de-1-simulador",
+    "href": "P6_Amplificador_operacional.html#impedancias-para-qué-sirve-una-ganancia-de-1-simulador",
+    "title": "",
+    "section": "Impedancias: ¿para qué sirve una ganancia de 1? Simulador",
+    "text": "Impedancias: ¿para qué sirve una ganancia de 1? Simulador"
+  },
+  {
+    "objectID": "P6_Amplificador_operacional.html#parámetros-de-tensión-y-corriente",
+    "href": "P6_Amplificador_operacional.html#parámetros-de-tensión-y-corriente",
+    "title": "",
+    "section": "Parámetros de tensión y corriente",
+    "text": "Parámetros de tensión y corriente\n\n\n\nTensión de offset de salida: la que aparece en la salida con las dos entradas a masa.\nTensión de offset de entrada: la que hay que aplicar entre las entradas para anular la salida. Se corrige con un potenciómetro entre las patillas 1 y 5.\nCorriente de offset: Ieo = |Ib+ − Ib−|.\nCorriente de polarización: Ib = (Ib+ + Ib−)/2.\n\n\n\n\nSaturación La salida no supera ≈ 90 % de la alimentación (±13,5 V con ±15 V). Si Av·Ve es mayor, la señal se recorta. Pruébalo en el simulador de configuraciones subiendo Ve.\n\n\nSlew rate El 741 no puede cambiar su salida más deprisa de 0,5 V/µs: a alta frecuencia y gran amplitud la senoidal se vuelve triangular."
+  },
+  {
+    "objectID": "P6_Amplificador_operacional.html#material-y-procedimiento-lista-de-comprobación",
+    "href": "P6_Amplificador_operacional.html#material-y-procedimiento-lista-de-comprobación",
+    "title": "",
+    "section": "Material y procedimiento Lista de comprobación",
+    "text": "Material y procedimiento Lista de comprobación\n\n\n\n\n\nEquipos\nComponentes\n\n\n\n\nGenerador de funciones\nLM741\n\n\nOsciloscopio\nPotenciómetros de 500 Ω y 5 kΩ\n\n\nPolímetro\n1 kΩ, 10 kΩ y 22 kΩ (½ W)\n\n\nFuente simétrica ±15 V\nProtoboard y cables\n\n\n\n\nAntes de entrar Elige R1 y R2 para un inversor con |Av| = 10 y un no inversor con Av = 23. Con 0,1 V de entrada, ¿qué salida esperas?\n\n\n\n\n\n  Conecto la fuente en modo serie: +15 V, 0 V (masa) y −15 V, y la llevo a las patillas 7 y 4.\n  Monto el inversor con |Av| = 10 y Ve = 0,1 V, 1 kHz; mido Ve y Vs y calculo Av.\n  Mido V− (masa virtual) y Ze = Ve/I con la caída en R1.\n  Mido Zs por el método de la tensión mitad con el potenciómetro.\n  Quito R2 y observo la salida sin realimentación.\n  Monto el no inversor con Av = 23 y repito las medidas.\n  Subo Ve hasta el recorte y anoto ±Vsat; monto el seguidor.\n  Barrido en frecuencia (1 a 200 kHz) y recojo el puesto."
+  },
+  {
+    "objectID": "P6_Amplificador_operacional.html#errores-frecuentes-pulsa-cada-tarjeta",
+    "href": "P6_Amplificador_operacional.html#errores-frecuentes-pulsa-cada-tarjeta",
+    "title": "",
+    "section": "Errores frecuentes Pulsa cada tarjeta",
+    "text": "Errores frecuentes Pulsa cada tarjeta\n\n  ✗Alimentar el 741 sólo con +15 V.pulsa✓Necesita ±15 V: fuente en modo serie con el punto medio a masa.\n  ✗Elegir una ganancia tal que Av·Ve supere ±13,5 V.pulsa✓La salida se recorta. Comprueba siempre Av·Ve antes de medir.\n  ✗Confundir las patillas 2 (−) y 3 (+).pulsa✓Con las entradas cambiadas la realimentación es positiva y el AO satura.\n  ✗Trabajar a alta frecuencia con ganancias grandes.pulsa✓El ancho de banda es ≈ 1 MHz/Av.\n  ✗Olvidar el signo de la ganancia del inversor.pulsa✓Av = −R2/R1: la salida está desfasada 180°.\n  ✗Medir Ve en Vpp y Vs en amplitud.pulsa✓Usa la misma magnitud en las dos o la ganancia saldrá el doble o la mitad."
+  },
+  {
+    "objectID": "P6_Amplificador_operacional.html#adapta-un-sensor-al-convertidor-ad-calculadora",
+    "href": "P6_Amplificador_operacional.html#adapta-un-sensor-al-convertidor-ad-calculadora",
+    "title": "",
+    "section": "Adapta un sensor al convertidor A/D Calculadora",
+    "text": "Adapta un sensor al convertidor A/D Calculadora"
+  },
+  {
+    "objectID": "P6_Amplificador_operacional.html#dónde-hay-un-operacional",
+    "href": "P6_Amplificador_operacional.html#dónde-hay-un-operacional",
+    "title": "",
+    "section": "¿Dónde hay un operacional?",
+    "text": "¿Dónde hay un operacional?\n\n  Micrófono del portátilno inversorAmplifica milivoltios antes del convertidor de audio.\n  SensoresacondicionamientoTemperatura, luz o presión llevadas al rango del A/D.\n  Filtros activosintegrador · derivadorLos filtros de la Práctica 1 con ganancia y sin cargar la fuente.\n  Comparadoreslazo abiertoDetectan si una tensión supera un umbral: de analógico a 0/1.\n  SumadoresinversorMezcladores de audio y convertidores D/A sencillos.\n  ElectrocardiógrafosinstrumentaciónAmplifican diferencias de microvoltios con mucho ruido alrededor.\n  Buffer de referenciaseguidorReparte una tensión de referencia sin que caiga.\n  Disparador Schmittrealimentación positivaLimpia señales ruidosas antes de un microcontrolador."
+  },
+  {
+    "objectID": "P6_Amplificador_operacional.html#así-es-el-examen",
+    "href": "P6_Amplificador_operacional.html#así-es-el-examen",
+    "title": "",
+    "section": "Así es el examen",
+    "text": "Así es el examen\n\n\n\n\n\nApartado\nPuntos\n\n\n\n\nNombre del circuito\n1\n\n\nVe = 2 V a 2,5 kHz: Ve y Vs en el osciloscopio\n5\n\n\nGanancia\n1\n\n\nComportamiento sin realimentación\n3\n\n\n\n\n\n\nEn teoría Operacional real frente a ideal: parámetros, cortocircuito virtual y configuraciones inversora y no inversora.\n\n\nAntes de medir Calcula siempre Av·Ve: si supera 13,5 V, la salida estará recortada."
+  },
+  {
+    "objectID": "P6_Amplificador_operacional.html#entrena-con-enunciados-reales-simulador",
+    "href": "P6_Amplificador_operacional.html#entrena-con-enunciados-reales-simulador",
+    "title": "",
+    "section": "Entrena con enunciados reales Simulador",
+    "text": "Entrena con enunciados reales Simulador"
+  },
+  {
+    "objectID": "P6_Amplificador_operacional.html#qué-has-aprendido-escanea-el-qr-resultados-en-directo",
+    "href": "P6_Amplificador_operacional.html#qué-has-aprendido-escanea-el-qr-resultados-en-directo",
+    "title": "",
+    "section": "¿Qué has aprendido? Escanea el QR · resultados en directo",
+    "text": "¿Qué has aprendido? Escanea el QR · resultados en directo"
+  },
+  {
+    "objectID": "P6_Amplificador_operacional.html#resumen",
+    "href": "P6_Amplificador_operacional.html#resumen",
+    "title": "",
+    "section": "Resumen",
+    "text": "Resumen\n\n\n\n\n\n\n\n\n\n\nInversor\nNo inversor\nSeguidor\n\n\n\n\nGanancia\n−R2/R1\n1 + R2/R1\n1\n\n\nFase de la salida\n180°\n0°\n0°\n\n\nImpedancia de entrada\n≈ R1\nMuy alta\nMuy alta\n\n\nUso típico\nAmplificar e invertir, sumadores\nAmplificar sin cargar la fuente\nAdaptar impedancias\n\n\n\n\n\n1 Con realimentación negativa: V+ ≈ V− e I+ ≈ I− ≈ 0.\n\n\n2 La ganancia la fijan las resistencias, no el operacional.\n\n\n3 Límites reales: ±13,5 V y GBW ≈ 1 MHz."
+  },
+  {
+    "objectID": "P6_Amplificador_operacional.html#recursos-y-créditos",
+    "href": "P6_Amplificador_operacional.html#recursos-y-créditos",
+    "title": "",
+    "section": "Recursos y créditos",
+    "text": "Recursos y créditos\n\n\nPara seguir practicando\n\nCuaderno de laboratorio y fundamento teórico de la Práctica 6 (Moodle).\nHoja de características del LM741.\nSimuladores de circuitos: Falstad, LTspice o Multisim.\n\nFicha del recurso\nAutora: Cristina Martínez Ruedas (ORCID 0000-0003-0089-1133). Departamento de Ingeniería Electrónica y de Computadores, Universidad de Córdoba. Circuitos y Sistemas Electrónicos, 1.er curso del Grado en Ingeniería Informática, EPS de Córdoba. Versión 1.0, octubre de 2026.\n\n\n\nLicencia Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0). Todos los esquemas, gráficas y simuladores son de elaboración propia.\n\nVolver al inicio"
+  },
+  {
+    "objectID": "P4_Transistor_I.html#hoja-de-ruta",
+    "href": "P4_Transistor_I.html#hoja-de-ruta",
+    "title": "",
+    "section": "Hoja de ruta",
+    "text": "Hoja de ruta\n\n\nEl transistor es el ladrillo de la informática\n\nUn procesador moderno contiene miles de millones de transistores trabajando como interruptores (0 y 1).\nCon un transistor, un pin de un microcontrolador puede encender un motor, un relé o una tira de LEDs.\nLas primeras puertas lógicas (familias RTL y TTL) se construyeron con transistores bipolares como los de esta práctica.\n\n\nObjetivos Reconocer el símbolo, los terminales y el modelo de dos diodos · relacionar las mallas con IB y la recta de carga · identificar las zonas de corte, activa y saturación · comprobar un transistor con el polímetro.\n\n\n\n\n  1 · Encuesta inicialEscanea el QR: ¿qué sabes ya?\n  2 · El transistorTerminales, npn y pnp, efecto transistor.\n  3 · Punto de trabajoMallas, recta de carga y zonas con simuladores animados.\n  4 · ConmutaciónVBB senoidal, polímetro y puertas lógicas.\n  5 · Laboratorio, aplicaciones y examenY encuesta final para comparar."
+  },
+  {
+    "objectID": "P4_Transistor_I.html#qué-sabes-ya-escanea-el-qr-resultados-en-directo",
+    "href": "P4_Transistor_I.html#qué-sabes-ya-escanea-el-qr-resultados-en-directo",
+    "title": "",
+    "section": "¿Qué sabes ya? Escanea el QR · resultados en directo",
+    "text": "¿Qué sabes ya? Escanea el QR · resultados en directo"
+  },
+  {
+    "objectID": "P4_Transistor_I.html#el-transistor-en-pocas-palabras",
+    "href": "P4_Transistor_I.html#el-transistor-en-pocas-palabras",
+    "title": "",
+    "section": "El transistor en pocas palabras",
+    "text": "El transistor en pocas palabras\n\n\nTres terminales: base (B), colector (C) y emisor (E). Una corriente pequeña en la base controla una corriente mucho mayor entre colector y emisor:\n\n\\[I_C=\\beta\\cdot I_B\\qquad I_E=I_B+I_C\\qquad V_{CE}=V_{CB}+V_{BE}\\]\n\nβ = hFE ≈ 50 a 500. Por eso sirve como interruptor controlado y como amplificador.\n\n  \n  \n  BCEnpn\n  \n  BCEpnp\n  flecha hacia fuerahacia dentro\n\n\n\n\n\n\n\n\n\n\n\n\nnpn\npnp\n\n\n\n\nFlecha del emisor\nHacia fuera\nHacia dentro\n\n\nCorriente de colector\nEntra por C, sale por E\nEntra por E, sale por C\n\n\nPara conducir\nBase ≈ 0,7 V por encima del emisor\nBase ≈ 0,7 V por debajo\n\n\nModelo de dos diodos\nÁnodos unidos en la base\nCátodos unidos en la base\n\n\n\n\nEfecto transistor La base es muy estrecha y poco dopada: casi todos los portadores que inyecta el emisor la atraviesan y llegan al colector. Dos diodos sueltos no hacen un transistor."
+  },
+  {
+    "objectID": "P4_Transistor_I.html#mallas-recta-de-carga-y-zonas-simulador",
+    "href": "P4_Transistor_I.html#mallas-recta-de-carga-y-zonas-simulador",
+    "title": "",
+    "section": "Mallas, recta de carga y zonas Simulador",
+    "text": "Mallas, recta de carga y zonas Simulador"
+  },
+  {
+    "objectID": "P4_Transistor_I.html#cómo-se-mueve-la-recta-de-carga",
+    "href": "P4_Transistor_I.html#cómo-se-mueve-la-recta-de-carga",
+    "title": "",
+    "section": "Cómo se mueve la recta de carga",
+    "text": "Cómo se mueve la recta de carga\n\n\nMalla de salida (VCC, RL, C-E):\n\\[I_C=\\frac{V_{CC}-V_{CE}}{R_L}\\]\nExtremos: (VCC; 0) y (0; VCC/RL). Sólo depende del circuito exterior.\nMalla de entrada (VBB, RB, B-E):\n\\[I_B=\\frac{V_{BB}-0{,}7}{R_B}\\quad (V_{BB}&gt;0{,}7\\ \\text{V})\\]\nIB no mueve la recta: elige cuál de las curvas de salida vale.\n\n\n\n\n\n\n\n\n\n\nSi…\nLa recta…\nConsecuencia\n\n\n\n\nAumenta VCC\nSe desplaza paralela hacia arriba y a la derecha\nAumentan VCE máx. e IC,sat\n\n\nDisminuye VCC\nParalela hacia abajo y a la izquierda\nDisminuyen\n\n\nAumenta RL\nGira sobre (VCC; 0) y se tumba\nBaja IC,sat: satura antes\n\n\nDisminuye RL\nGira y se pone más vertical\nSube IC,sat\n\n\n\n\nPruébalo En el simulador anterior mueve VCC y RL y observa la recta; mueve VBB y RB y observa cómo Q se desplaza sobre ella."
+  },
+  {
+    "objectID": "P4_Transistor_I.html#las-tres-zonas",
+    "href": "P4_Transistor_I.html#las-tres-zonas",
+    "title": "",
+    "section": "Las tres zonas",
+    "text": "Las tres zonas\n\n  CorteVBB &lt; 0,7 VIB = 0 → IC ≈ 0 y VCE ≈ VCC. Interruptor abierto. PT ≈ 0.Al medir: VCE ≈ VCC, VRL ≈ 0.\n  Activaβ·IB &lt; IC,satIC = β·IB: fuente de corriente, amplifica. Es donde más se calienta (máximo en VCE = VCC/2).Al medir: VCE entre 0,3 V y VCC.\n  Saturaciónβ·IB ≥ IC,satIC = IC,sat = (VCC − 0,2)/RL, VCE ≈ 0,2 V. Interruptor cerrado. Ya no se cumple IC = β·IB.Al medir: VCE ≈ 0,1 a 0,3 V.\n\n\n\n\n\n\n\n\n\n\n\n\nVBB\nIB\nβ·IB\nIC\nVCE\nZona\n\n\n\n\n0,5 V\n0\n0\n≈ 0\n≈ 15 V\nCorte\n\n\n1,5 V\n80 µA\n10 mA &lt; 14,8 mA\n10 mA\n5 V\nActiva\n\n\n10 V\n930 µA\n116 mA &gt; 14,8 mA\n14,8 mA\n≈ 0,2 V\nSaturación\n\n\n\n\nVCC = 15 V, RL = 1 kΩ, RB = 10 kΩ, β = 125, IC,sat = 14,8 mA."
+  },
+  {
+    "objectID": "P4_Transistor_I.html#vbb-senoidal-el-recorrido-por-la-recta-de-carga-simulador",
+    "href": "P4_Transistor_I.html#vbb-senoidal-el-recorrido-por-la-recta-de-carga-simulador",
+    "title": "",
+    "section": "VBB senoidal: el recorrido por la recta de carga Simulador",
+    "text": "VBB senoidal: el recorrido por la recta de carga Simulador"
+  },
+  {
+    "objectID": "P4_Transistor_I.html#npn-o-pnp-dónde-está-la-base-simulador",
+    "href": "P4_Transistor_I.html#npn-o-pnp-dónde-está-la-base-simulador",
+    "title": "",
+    "section": "¿npn o pnp? ¿Dónde está la base? Simulador",
+    "text": "¿npn o pnp? ¿Dónde está la base? Simulador"
+  },
+  {
+    "objectID": "P4_Transistor_I.html#material-y-procedimiento-lista-de-comprobación",
+    "href": "P4_Transistor_I.html#material-y-procedimiento-lista-de-comprobación",
+    "title": "",
+    "section": "Material y procedimiento Lista de comprobación",
+    "text": "Material y procedimiento Lista de comprobación\n\n\n\n\n\nEquipos\nComponentes\n\n\n\n\nFuente de alimentación\nBD137 o BC107 (npn)\n\n\nGenerador de funciones\nBD138 (pnp)\n\n\nOsciloscopio\nR = 10 kΩ, ¼ W\n\n\nPolímetro\nR = 1 kΩ, ¼ W\n\n\n\n\nAntes de entrar Calcula IC,sat (VCC = 15 V, RL = 1 kΩ). ¿Qué IB y qué VBB hacen falta para saturar con β = 125?\n\n\n\n\n\n  Identifico base, colector, emisor y el tipo (npn/pnp) con el polímetro. Mido β con el zócalo hFE.\n  VBB senoidal de 20 Vpp y 200 Hz, VCC = 15 V, RB = 10 kΩ, RL = 1 kΩ.\n  Represento VCE (CH1) e IC = VRL/RL (CH2) y marco corte, activa, saturación y PT máx.\n  Repito con el pnp (BD138) cambiando el signo de las tensiones.\n  Con VBB continua de 0,5 V, 1,5 V y 10 V mido VCE e IC y los comparo con la teoría.\n  Calculo PT = VCE·IC y PL = IC²·RL y sitúo los puntos en la recta de carga.\n  Dibujo el esquema para ver la característica en modo XY.\n  Apago los equipos, desmonto y recojo cables y sondas."
+  },
+  {
+    "objectID": "P4_Transistor_I.html#errores-frecuentes-pulsa-cada-tarjeta",
+    "href": "P4_Transistor_I.html#errores-frecuentes-pulsa-cada-tarjeta",
+    "title": "",
+    "section": "Errores frecuentes Pulsa cada tarjeta",
+    "text": "Errores frecuentes Pulsa cada tarjeta\n\n  ✗Confundir el patillaje entre encapsulados.pulsa✓El BD137 (E, C, B mirando el texto) y el BC107 son distintos: mira siempre la hoja de características.\n  ✗Olvidar la resistencia de base.pulsa✓Sin RB la unión base-emisor (un diodo) recibe demasiada corriente y se destruye.\n  ✗Medir IC abriendo el circuito.pulsa✓Mide VRL y calcula IC = VRL/RL.\n  ✗Aplicar IC = β·IB en saturación.pulsa✓En saturación IC la limita RL: IC,sat = (VCC − 0,2)/RL.\n  ✗Montar el pnp con las mismas polaridades que el npn.pulsa✓En el pnp todas las tensiones y corrientes van al revés: VCC y VBB negativas.\n  ✗No marcar las zonas en la gráfica de VCE e IC.pulsa✓Corte: VCE = VCC. Saturación: VCE ≈ 0,2 V. Entre medias, activa. PT máx en VCC/2."
+  },
+  {
+    "objectID": "P4_Transistor_I.html#puertas-lógicas-con-transistores-simulador",
+    "href": "P4_Transistor_I.html#puertas-lógicas-con-transistores-simulador",
+    "title": "",
+    "section": "Puertas lógicas con transistores Simulador",
+    "text": "Puertas lógicas con transistores Simulador"
+  },
+  {
+    "objectID": "P4_Transistor_I.html#un-pin-gpio-controla-una-carga-calculadora",
+    "href": "P4_Transistor_I.html#un-pin-gpio-controla-una-carga-calculadora",
+    "title": "",
+    "section": "Un pin GPIO controla una carga Calculadora",
+    "text": "Un pin GPIO controla una carga Calculadora"
+  },
+  {
+    "objectID": "P4_Transistor_I.html#dónde-hay-un-transistor",
+    "href": "P4_Transistor_I.html#dónde-hay-un-transistor",
+    "title": "",
+    "section": "¿Dónde hay un transistor?",
+    "text": "¿Dónde hay un transistor?\n\n  ProcesadoresMOSFET · miles de millonesCada bit se conmuta con transistores en corte y conducción.\n  Puertas TTLbipolaresLa familia 74xx, base de la electrónica digital durante décadas.\n  Drivers de relés y motoressaturaciónUn pin GPIO gobierna corrientes de cientos de mA.\n  Tiras de LEDsPWM + transistorEl brillo se regula conmutando el transistor muy deprisa.\n  Preamplificador de micrófonoactivaAmplifica una señal de milivoltios (Práctica 5).\n  OptoacopladoresfototransistorLa luz de un LED hace de corriente de base.\n  Sensores de temperaturaVBEVBE baja unos 2 mV por grado: el chip mide así su temperatura.\n  Fuentes conmutadasconmutación rápidaTransistores que se abren y cierran a cientos de kHz."
+  },
+  {
+    "objectID": "P4_Transistor_I.html#así-es-el-examen-de-laboratorio",
+    "href": "P4_Transistor_I.html#así-es-el-examen-de-laboratorio",
+    "title": "",
+    "section": "Así es el examen de laboratorio",
+    "text": "Así es el examen de laboratorio\n\n\n\n\n\n\n\n\n\nFamilia de enunciados\nQué se pide\n\n\n\n\nVBB continua (0,5 / 5 / 15 V, o 0,5 / 1,2 / 5 V)\nVCE e IC medidos y teóricos, zona, justificación\n\n\nVBB senoidal (5 a 20 Vpp, 100 Hz)\nVCE e IC en el osciloscopio, zonas, punto de disipación máxima, terminales\n\n\nPolarización\nMedir el punto de trabajo (Práctica 5)\n\n\n\n\n\n\nDatos habituales BD137 con β = 125, VBE = 0,7 V y VCE,sat = 0,2 V.\n\n\nPreguntas que se repiten Identificar los terminales · marcar las zonas · el punto de disipación máxima · el esquema para ver la característica en modo XY."
+  },
+  {
+    "objectID": "P4_Transistor_I.html#entrena-con-enunciados-reales-2021-2026-simulador",
+    "href": "P4_Transistor_I.html#entrena-con-enunciados-reales-2021-2026-simulador",
+    "title": "",
+    "section": "Entrena con enunciados reales (2021-2026) Simulador",
+    "text": "Entrena con enunciados reales (2021-2026) Simulador"
+  },
+  {
+    "objectID": "P4_Transistor_I.html#qué-has-aprendido-escanea-el-qr-resultados-en-directo",
+    "href": "P4_Transistor_I.html#qué-has-aprendido-escanea-el-qr-resultados-en-directo",
+    "title": "",
+    "section": "¿Qué has aprendido? Escanea el QR · resultados en directo",
+    "text": "¿Qué has aprendido? Escanea el QR · resultados en directo"
+  },
+  {
+    "objectID": "P4_Transistor_I.html#resumen",
+    "href": "P4_Transistor_I.html#resumen",
+    "title": "",
+    "section": "Resumen",
+    "text": "Resumen\n\n\n\n\n\n\n\n\n\n\n\nZona\nCondición\nIC\nVCE\nSe comporta como\nUso\n\n\n\n\nCorte\nVBB &lt; 0,7 V\n≈ 0\n≈ VCC\nInterruptor abierto\n“0”\n\n\nActiva\nβ·IB &lt; IC,sat\nβ·IB\nVCC − IC·RL\nFuente de corriente\nAmplificar\n\n\nSaturación\nβ·IB ≥ IC,sat\n(VCC − 0,2)/RL\n≈ 0,2 V\nInterruptor cerrado\n“1”\n\n\n\n\n\n1 La recta de carga sólo depende de VCC y RL; el transistor siempre trabaja sobre ella.\n\n\n2 IB (malla de entrada) elige la curva y mueve Q a lo largo de la recta.\n\n\n3 En conmutación (corte ↔︎ saturación) el transistor apenas se calienta."
+  },
+  {
+    "objectID": "P4_Transistor_I.html#recursos-y-créditos",
+    "href": "P4_Transistor_I.html#recursos-y-créditos",
+    "title": "",
+    "section": "Recursos y créditos",
+    "text": "Recursos y créditos\n\n\nPara seguir practicando\n\nCuaderno de laboratorio y fundamento teórico de la Práctica 4 (Moodle).\nHojas de características del BD137 y del BD138.\nSimuladores de circuitos: Falstad, LTspice o Multisim.\n\nFicha del recurso\nAutora: Cristina Martínez Ruedas (ORCID 0000-0003-0089-1133). Departamento de Ingeniería Electrónica y de Computadores, Universidad de Córdoba. Circuitos y Sistemas Electrónicos, 1.er curso del Grado en Ingeniería Informática, EPS de Córdoba. Versión 1.0, octubre de 2026.\n\n\n\nLicencia Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0). Todos los esquemas, gráficas y simuladores son de elaboración propia.\n\nVolver al inicio"
+  },
+  {
+    "objectID": "P2_Diodo.html#hoja-de-ruta",
+    "href": "P2_Diodo.html#hoja-de-ruta",
+    "title": "",
+    "section": "Hoja de ruta",
+    "text": "Hoja de ruta\n\n\nEl diodo es la “válvula antirretorno” de la electrónica\n\nLos LEDs del teclado y de muchas pantallas son diodos.\nLos puertos USB y HDMI llevan diodos que los protegen frente a descargas electrostáticas.\nUn diodo Zener da una tensión de referencia estable, por ejemplo para un convertidor analógico-digital.\n\n\nObjetivos Reconocer el diodo y sus terminales · interpretar su curva característica zona a zona · comprobarlo con el polímetro · obtener su curva punto a punto y en el osciloscopio (modo XY) · conocer el diodo Zener.\n\n\n\n\n  1 · Encuesta inicialEscanea el QR: ¿qué sabes ya?\n  2 · Curva característicaZonas, modelos y punto de trabajo con simuladores.\n  3 · Polímetro y modo XYComprueba el diodo y ve su curva en la pantalla.\n  4 · El diodo ZenerRegulador de tensión interactivo.\n  5 · Laboratorio, aplicaciones y examenY encuesta final para comparar."
+  },
+  {
+    "objectID": "P2_Diodo.html#qué-sabes-ya-escanea-el-qr-resultados-en-directo",
+    "href": "P2_Diodo.html#qué-sabes-ya-escanea-el-qr-resultados-en-directo",
+    "title": "",
+    "section": "¿Qué sabes ya? Escanea el QR · resultados en directo",
+    "text": "¿Qué sabes ya? Escanea el QR · resultados en directo"
+  },
+  {
+    "objectID": "P2_Diodo.html#el-diodo-en-pocas-palabras",
+    "href": "P2_Diodo.html#el-diodo-en-pocas-palabras",
+    "title": "",
+    "section": "El diodo en pocas palabras",
+    "text": "El diodo en pocas palabras\n\n\nUn diodo tiene dos terminales, ánodo (A) y cátodo (K), y deja pasar la corriente en un único sentido: de ánodo a cátodo.\n\n  \n  \n  \n  A (ánodo)K (cátodo)\n  I\n  \n  \n  1N4007: la franja es el cátodo\n\n\nRegla rápida Un diodo de silicio conduce cuando VA − VK ≥ 0,7 V. Si no, bloquea y se comporta como un interruptor abierto.\n\n\n\n\n\n\n¿Para qué sirve?\nEjemplo\n\n\n\n\nRectificar (alterna → continua)\nCargadores y fuentes (Práctica 3)\n\n\nProteger contra polaridad inversa\nPila conectada al revés\n\n\nProteger frente a picos\nPuertos USB y HDMI, relés y motores\n\n\nEmitir luz (LED)\nIndicadores, pantallas\n\n\nFijar una tensión (Zener)\nReferencias y reguladores"
+  },
+  {
+    "objectID": "P2_Diodo.html#cómo-funciona-por-dentro-la-unión-pn-simulador",
+    "href": "P2_Diodo.html#cómo-funciona-por-dentro-la-unión-pn-simulador",
+    "title": "",
+    "section": "Cómo funciona por dentro: la unión PN Simulador",
+    "text": "Cómo funciona por dentro: la unión PN Simulador"
+  },
+  {
+    "objectID": "P2_Diodo.html#la-curva-zona-a-zona-simulador",
+    "href": "P2_Diodo.html#la-curva-zona-a-zona-simulador",
+    "title": "",
+    "section": "La curva, zona a zona Simulador",
+    "text": "La curva, zona a zona Simulador"
+  },
+  {
+    "objectID": "P2_Diodo.html#cómo-leer-la-curva-sin-liarse",
+    "href": "P2_Diodo.html#cómo-leer-la-curva-sin-liarse",
+    "title": "",
+    "section": "Cómo leer la curva sin liarse",
+    "text": "Cómo leer la curva sin liarse\n\n\n\nEje X: la tensión en el diodo, VD. Eje Y: la corriente, ID.\nCada punto es un posible estado: “si tiene esta tensión, circula esta corriente”.\nUna resistencia es una recta por el origen (I = V/R) y conduce igual en los dos sentidos. El diodo es muy asimétrico.\n\n\\[I = I_o\\left(e^{V/\\eta V_T}-1\\right)\\qquad V_T=\\frac{kT}{q}\\approx 25{,}8\\ \\text{mV}\\]\n\n\n\n\n\nMaterial\nTensión umbral Vγ\nEjemplo\n\n\n\n\nSilicio\n0,6 a 0,7 V\n1N4007, 1N4148\n\n\nGermanio\n0,2 a 0,3 V\nDiodos antiguos\n\n\nLED rojo / azul\n1,8 V / 3 V\nIndicadores\n\n\n\n\nPregúntate siempre ¿Qué tensión tiene el diodo? A la derecha de Vγ conduce; entre 0 y la ruptura, no conduce."
+  },
+  {
+    "objectID": "P2_Diodo.html#modelos-para-calcular",
+    "href": "P2_Diodo.html#modelos-para-calcular",
+    "title": "",
+    "section": "Modelos para calcular",
+    "text": "Modelos para calcular\n\n\n\n\n\n\n\n\nModelo\nEn conducción\nCuándo usarlo\n\n\n\n\nIdeal\nCortocircuito (VD = 0)\nTensiones mucho mayores que 0,7 V\n\n\nCon tensión umbral\nFuente VD = Vγ ≈ 0,7 V\nLa mayoría de los cálculos de la práctica\n\n\nCon resistencia\nVD = Vγ + ρ·ID\nCorrientes altas o cálculos precisos\n\n\n\n\n\nEjemplo: el punto de trabajo Fuente de 5 V, R = 1 kΩ y diodo en directa: VD ≈ 0,7 V e I = (5 − 0,7)/1000 = 4,3 mA. Si inviertes la fuente, el diodo bloquea: I ≈ 0.\n\n\nEn inversa En todos los modelos el diodo se considera un circuito abierto (salvo el Zener en ruptura)."
+  },
+  {
+    "objectID": "P2_Diodo.html#medida-punto-a-punto-y-recta-de-carga-simulador",
+    "href": "P2_Diodo.html#medida-punto-a-punto-y-recta-de-carga-simulador",
+    "title": "",
+    "section": "Medida punto a punto y recta de carga Simulador",
+    "text": "Medida punto a punto y recta de carga Simulador"
+  },
+  {
+    "objectID": "P2_Diodo.html#está-bien-el-diodo-el-polímetro-simulador",
+    "href": "P2_Diodo.html#está-bien-el-diodo-el-polímetro-simulador",
+    "title": "",
+    "section": "¿Está bien el diodo? El polímetro Simulador",
+    "text": "¿Está bien el diodo? El polímetro Simulador\n\n\n\n\nEn directa el modo diodo marca unos 0,5 a 0,7 V (la punta roja está en el ánodo); en inversa, OL. Si las dos lecturas son bajas, está en cortocircuito; si las dos son OL, está abierto."
+  },
+  {
+    "objectID": "P2_Diodo.html#el-zener-en-pocas-palabras",
+    "href": "P2_Diodo.html#el-zener-en-pocas-palabras",
+    "title": "",
+    "section": "El Zener en pocas palabras",
+    "text": "El Zener en pocas palabras\n\n\n\nTrabaja en inversa, en la zona de ruptura, donde mantiene una tensión casi constante: VZ (5,1 V en la práctica).\nEn directa se comporta como un diodo normal (≈ 0,7 V).\nSe conecta al revés que un diodo normal: el cátodo (franja) hacia el positivo.\nSiempre necesita una resistencia limitadora en serie.\n\nVer su curva en el simulador ▶\n\n\n\n\n\nZona\nComportamiento\nUso\n\n\n\n\nDirecta\nConduce desde ≈ 0,7 V\nPoco habitual\n\n\nInversa, |V| &lt; VZ\nBloquea\nEl Zener “no hace nada”\n\n\nInversa, |V| = VZ\nMantiene VZ\nRegulación y referencia\n\n\n\n\nCuidados Nunca directamente a la fuente sin resistencia · comprueba que PZ = VZ·IZ no supera la máxima (p. ej. 0,5 W) · montado al revés sólo “fija” 0,7 V."
+  },
+  {
+    "objectID": "P2_Diodo.html#el-regulador-zener-simulador",
+    "href": "P2_Diodo.html#el-regulador-zener-simulador",
+    "title": "",
+    "section": "El regulador Zener Simulador",
+    "text": "El regulador Zener Simulador"
+  },
+  {
+    "objectID": "P2_Diodo.html#la-curva-en-la-pantalla-del-osciloscopio-simulador",
+    "href": "P2_Diodo.html#la-curva-en-la-pantalla-del-osciloscopio-simulador",
+    "title": "",
+    "section": "La curva en la pantalla del osciloscopio Simulador",
+    "text": "La curva en la pantalla del osciloscopio Simulador"
+  },
+  {
+    "objectID": "P2_Diodo.html#cómo-se-monta-el-modo-xy",
+    "href": "P2_Diodo.html#cómo-se-monta-el-modo-xy",
+    "title": "",
+    "section": "Cómo se monta el modo XY",
+    "text": "Cómo se monta el modo XY\n\n\n\n  \n  10 V · 50 Hz(aislado)\n  \n  D\n  R = 1 kΩ\n  CH1 = VD\n  CH2 = −VR\n  masa común\n\n\n\n\nX = CH1: tensión del diodo. Y = CH2: tensión en R, proporcional a la corriente (I = VR/R).\nLa masa del osciloscopio va entre el diodo y la resistencia: la fuente tiene que estar aislada (transformador).\nPor eso CH2 mide −VR: hay que invertir el canal 2.\nEscala de corriente: mA/div = (V/div de CH2) ÷ R.\n\n\nOjo Si conectas la masa de la sonda en un punto que cortocircuita la fuente, puedes dañar el generador."
+  },
+  {
+    "objectID": "P2_Diodo.html#material-y-procedimiento-lista-de-comprobación",
+    "href": "P2_Diodo.html#material-y-procedimiento-lista-de-comprobación",
+    "title": "",
+    "section": "Material y procedimiento Lista de comprobación",
+    "text": "Material y procedimiento Lista de comprobación\n\n\n\n\n\nEquipos\nComponentes\n\n\n\n\nGenerador de funciones\nDiodo 1N4007\n\n\nOsciloscopio\nZener de 5,1 V\n\n\nPolímetro\nR = 1 kΩ, 1 W\n\n\nFuente / transformador 220-24 V\nProtoboard y cables\n\n\n\n\nAntes de entrar Calcula I con Ve = 5 V, R = 1 kΩ y Vγ = 0,7 V. ¿Y con −5 V? ¿Y con el Zener a −10 V?\n\n\n\n\n\n  Identifico ánodo y cátodo con el polímetro en modo diodo.\n  Calculo Rmin = (V − Vγ)/IDmax y su potencia.\n  Monto fuente + R + diodo y mido VD y VR para cada Ve de la tabla. ID = VR/R.\n  Dibujo la curva ID = f(VD) con los puntos medidos.\n  Monto el circuito XY con el transformador, invierto CH2 y dibujo la curva con escalas.\n  Obtengo Vγ, la tensión inversa máxima y la corriente máxima.\n  Repito todo con el Zener y obtengo VZ.\n  Apago los equipos, desmonto y recojo cables y sondas."
+  },
+  {
+    "objectID": "P2_Diodo.html#recomendaciones-de-diseño",
+    "href": "P2_Diodo.html#recomendaciones-de-diseño",
+    "title": "",
+    "section": "Recomendaciones de diseño",
+    "text": "Recomendaciones de diseño\n\n\n\nElige un diodo con tensión inversa máxima mayor que la que va a soportar.\nLimita la potencia a la mitad de la nominal.\nLa corriente máxima debe ser menor que la nominal:\n\n\n\\[R_{min}=\\frac{V-V_\\gamma}{I_{D\\,max}}\\]\n\n\n\nEjemplo Con V = 12 V, Vγ = 0,7 V e IDmax = 0,5 A: Rmin = 11,3/0,5 = 22,6 Ω, y la resistencia debe disipar P = I²·R = 0,5²·22,6 ≈ 5,7 W."
+  },
+  {
+    "objectID": "P2_Diodo.html#errores-frecuentes-pulsa-cada-tarjeta",
+    "href": "P2_Diodo.html#errores-frecuentes-pulsa-cada-tarjeta",
+    "title": "",
+    "section": "Errores frecuentes Pulsa cada tarjeta",
+    "text": "Errores frecuentes Pulsa cada tarjeta\n\n  ✗Montar el diodo al revés.pulsa✓La franja del encapsulado marca el cátodo, igual que la barra del símbolo.\n  ✗Medir la corriente abriendo el circuito con el amperímetro.pulsa✓Es más rápido y seguro medir VR y calcular I = VR/R.\n  ✗Conectar el Zener sin resistencia limitadora.pulsa✓La corriente sería enorme y se destruiría. Siempre con R en serie.\n  ✗En modo XY, ver la curva al revés.pulsa✓CH2 mide −VR: activa la inversión del canal 2.\n  ✗Poner la masa de la sonda donde cortocircuita la fuente.pulsa✓Las masas de los canales están unidas: piensa dónde va antes de conectar. Usa la fuente aislada.\n  ✗Olvidar las escalas y las unidades de corriente en la gráfica XY.pulsa✓Eje Y en mA: mA/div = V/div ÷ R."
+  },
+  {
+    "objectID": "P2_Diodo.html#dónde-hay-un-diodo",
+    "href": "P2_Diodo.html#dónde-hay-un-diodo",
+    "title": "",
+    "section": "¿Dónde hay un diodo?",
+    "text": "¿Dónde hay un diodo?\n\n  LEDs indicadoresVγ 1,8-3 VTeclados, routers, placas de desarrollo. Siempre con resistencia en serie.\n  Protección ESDUSB · HDMIDiodos que desvían las descargas electrostáticas antes de que lleguen al chip.\n  Polaridad inversaentrada de alimentaciónSi conectas la fuente al revés, el diodo bloquea y protege la placa.\n  Diodo de libre circulaciónrelés · motoresEn paralelo con la bobina: absorbe el pico de tensión al desconectarla.\n  Referencia del A/DZenerTensión fija y estable para comparar la medida de un sensor.\n  Fuentes del ordenadorSchottkyDiodos rápidos que conmutan a cientos de kHz.\n  OptoacopladoresLED + fototransistorAíslan eléctricamente un microcontrolador de un circuito de potencia.\n  Mando a distanciaLED infrarrojoEnvía los bits como pulsos de luz invisible."
+  },
+  {
+    "objectID": "P2_Diodo.html#enciende-un-led-desde-un-microcontrolador-calculadora",
+    "href": "P2_Diodo.html#enciende-un-led-desde-un-microcontrolador-calculadora",
+    "title": "",
+    "section": "Enciende un LED desde un microcontrolador Calculadora",
+    "text": "Enciende un LED desde un microcontrolador Calculadora"
+  },
+  {
+    "objectID": "P2_Diodo.html#diodos-rápidos-el-tiempo-de-recuperación-inversa-simulador",
+    "href": "P2_Diodo.html#diodos-rápidos-el-tiempo-de-recuperación-inversa-simulador",
+    "title": "",
+    "section": "Diodos rápidos: el tiempo de recuperación inversa Simulador",
+    "text": "Diodos rápidos: el tiempo de recuperación inversa Simulador\n\n\n\n\nUn diodo no deja de conducir al instante: durante ts (almacenamiento) sigue pasando corriente inversa y después se extingue en tt. trr = ts + tt."
+  },
+  {
+    "objectID": "P2_Diodo.html#así-es-el-examen-de-laboratorio",
+    "href": "P2_Diodo.html#así-es-el-examen-de-laboratorio",
+    "title": "",
+    "section": "Así es el examen de laboratorio",
+    "text": "Así es el examen de laboratorio\n\n\n\n\n\nApartado\nPuntos\n\n\n\n\nTipo de diodo, terminales y características\n0,5 a 1\n\n\nTabla de VD, VR e ID\n2,5 a 4\n\n\nCurva característica a partir de la tabla\n1 a 1,5\n\n\nTensión umbral, tensión inversa e Imax\n1,5\n\n\nValores teóricos, justificación y potencia\n1 a 2\n\n\nEsquema para ver la curva en modo XY\n2\n\n\n\n\n\n\nLo que más puntúa La tabla de medidas y el esquema XY. Practica dónde van las sondas y la masa.\n\n\nEl Zener Misma estructura, con preguntas sobre VZ. En 2021 se pidió además calcular Rmin."
+  },
+  {
+    "objectID": "P2_Diodo.html#entrena-con-enunciados-reales-2021-2026-simulador",
+    "href": "P2_Diodo.html#entrena-con-enunciados-reales-2021-2026-simulador",
+    "title": "",
+    "section": "Entrena con enunciados reales (2021-2026) Simulador",
+    "text": "Entrena con enunciados reales (2021-2026) Simulador"
+  },
+  {
+    "objectID": "P2_Diodo.html#qué-has-aprendido-escanea-el-qr-resultados-en-directo",
+    "href": "P2_Diodo.html#qué-has-aprendido-escanea-el-qr-resultados-en-directo",
+    "title": "",
+    "section": "¿Qué has aprendido? Escanea el QR · resultados en directo",
+    "text": "¿Qué has aprendido? Escanea el QR · resultados en directo"
+  },
+  {
+    "objectID": "P2_Diodo.html#resumen",
+    "href": "P2_Diodo.html#resumen",
+    "title": "",
+    "section": "Resumen",
+    "text": "Resumen\n\n\n\n\n\n\n\n\n\nDiodo rectificador\nDiodo Zener\n\n\n\n\nZona de trabajo\nDirecta (conduce) / inversa (bloquea)\nInversa, en ruptura\n\n\nTensión característica\nVγ ≈ 0,7 V\nVZ (5,1 V en la práctica)\n\n\nConexión\nÁnodo hacia el positivo para conducir\nCátodo hacia el positivo\n\n\nAplicación típica\nRectificar, proteger\nReferencia y regulación\n\n\n\n\n\n1 El diodo conduce de ánodo a cátodo a partir de Vγ ≈ 0,7 V; en inversa bloquea.\n\n\n2 La corriente se calcula midiendo VR: I = VR/R. En el modo XY, invierte CH2.\n\n\n3 El Zener fija VZ en inversa y siempre necesita una resistencia limitadora."
+  },
+  {
+    "objectID": "P2_Diodo.html#recursos-y-créditos",
+    "href": "P2_Diodo.html#recursos-y-créditos",
+    "title": "",
+    "section": "Recursos y créditos",
+    "text": "Recursos y créditos\n\n\nPara seguir practicando\n\nCuaderno de laboratorio y fundamento teórico de la Práctica 2 (Moodle).\nSimuladores de circuitos: Falstad, LTspice o Multisim.\nHojas de características del 1N4007 y del Zener BZX55C5V1.\n\nFicha del recurso\nAutora: Cristina Martínez Ruedas (ORCID 0000-0003-0089-1133). Departamento de Ingeniería Electrónica y de Computadores, Universidad de Córdoba. Circuitos y Sistemas Electrónicos, 1.er curso del Grado en Ingeniería Informática, EPS de Córdoba. Versión 1.0, octubre de 2026.\n\n\n\nLicencia Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0). Todos los esquemas, gráficas y simuladores son de elaboración propia.\n\nVolver al inicio"
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#hoja-de-ruta",
+    "href": "P0_Manejo_de_equipos.html#hoja-de-ruta",
+    "title": "",
+    "section": "Hoja de ruta",
+    "text": "Hoja de ruta\n\n\n¿Por qué esta práctica es la más importante?\n\nEn todas las prácticas usarás los mismos cuatro equipos. Si los dominas, el resto de sesiones serán mucho más rápidas.\nLa mayoría de los errores del laboratorio no son de teoría sino de lectura de escalas (V/div, s/div) y de conexión de masas.\nPractica aquí con equipos virtuales antes de tocar los reales.\n\n\nObjetivos Normas de seguridad · continua y alterna · protoboard y resistencias · fuente, generador y polímetro · osciloscopio: escalas, disparo, acoplamiento, sondas, medidas y modo XY.\n\n\n\n\n\nCada puesto: fuente, generador de funciones y osciloscopio. El polímetro y la protoboard los aporta cada estudiante."
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#qué-sabes-ya-escanea-el-qr-resultados-en-directo",
+    "href": "P0_Manejo_de_equipos.html#qué-sabes-ya-escanea-el-qr-resultados-en-directo",
+    "title": "",
+    "section": "¿Qué sabes ya? Escanea el QR · resultados en directo",
+    "text": "¿Qué sabes ya? Escanea el QR · resultados en directo"
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#normas-de-seguridad-y-magnitudes",
+    "href": "P0_Manejo_de_equipos.html#normas-de-seguridad-y-magnitudes",
+    "title": "",
+    "section": "Normas de seguridad y magnitudes",
+    "text": "Normas de seguridad y magnitudes\n\n\n\n\n  Conecto y desconecto los cables sujetando la clavija, nunca tirando del cable.\n  Monto y modifico los circuitos con la alimentación apagada.\n  Comunico al profesorado cualquier material defectuoso.\n  Al terminar: equipos apagados, cables y sondas en su sitio.\n\n\n\n\n\n\n\n\n\n\n\nMagnitud\nUnidad\nSe mide con…\n\n\n\n\nTensión V\nvoltio (V)\nVoltímetro en paralelo; osciloscopio\n\n\nCorriente I\namperio (A)\nAmperímetro en serie\n\n\nResistencia R\nohmio (Ω)\nÓhmetro, componente fuera del circuito\n\n\nPotencia P\nvatio (W)\nSe calcula: P = V·I = I²·R = V²/R\n\n\nFrecuencia f\nhercio (Hz)\nOsciloscopio\n\n\n\n\nLey de Ohm: V = I·R · Prefijos: M = 10⁶ · k = 10³ · m = 10⁻³ · µ = 10⁻⁶ · n = 10⁻⁹"
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#parámetros-de-una-señal-simulador",
+    "href": "P0_Manejo_de_equipos.html#parámetros-de-una-señal-simulador",
+    "title": "",
+    "section": "Parámetros de una señal Simulador",
+    "text": "Parámetros de una señal Simulador\n\n\n\n\nContinua (DC): valor y signo constantes, como una pila o el USB. Alterna (AC): cambia de sentido, como la red (230 V, 50 Hz) o el generador. Con offset, una alterna desplazada: su valor medio es el offset."
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#la-placa-de-prototipos-simulador",
+    "href": "P0_Manejo_de_equipos.html#la-placa-de-prototipos-simulador",
+    "title": "",
+    "section": "La placa de prototipos Simulador",
+    "text": "La placa de prototipos Simulador"
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#el-código-de-colores-simulador",
+    "href": "P0_Manejo_de_equipos.html#el-código-de-colores-simulador",
+    "title": "",
+    "section": "El código de colores Simulador",
+    "text": "El código de colores Simulador"
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#la-fuente-de-alimentación",
+    "href": "P0_Manejo_de_equipos.html#la-fuente-de-alimentación",
+    "title": "",
+    "section": "La fuente de alimentación",
+    "text": "La fuente de alimentación\n\n\n\n\n\n\n\n\n\n\n\n\nElemento\nPara qué sirve\n\n\n\n\nIndicadores de V y A\nTensión y corriente de cada salida\n\n\nCV / CC\nCV: fuente de tensión (normal). CC: limitando corriente\n\n\nVOLTAGE / CURRENT\nTensión de salida / corriente máxima\n\n\nINDEP / SERIES / PARALLEL\nModos de las salidas MASTER y SLAVE\n\n\nBornes −, GND, +\nGND es la tierra del chasis, no necesariamente el negativo\n\n\nSalida fija 5 V\nPara circuitos digitales\n\n\n\n\nModo serie (tracking) MASTER controla las dos salidas; se une (−) MASTER con (+) SLAVE y ese punto es la masa: +15 V, 0 V y −15 V para el operacional (Práctica 6)."
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#limitar-la-corriente-simulador",
+    "href": "P0_Manejo_de_equipos.html#limitar-la-corriente-simulador",
+    "title": "",
+    "section": "Limitar la corriente Simulador",
+    "text": "Limitar la corriente Simulador"
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#el-generador-de-funciones",
+    "href": "P0_Manejo_de_equipos.html#el-generador-de-funciones",
+    "title": "",
+    "section": "El generador de funciones",
+    "text": "El generador de funciones\n\n\n\n\n\n\nConecta un cable BNC desde CH1.\nPulsa Sine y Continuous.\nFrequency/Period: teclado + unidad en el bisel.\nAmplitude (en Vpp), Offset y, si hace falta, Phase.\nCarga High Z (Top Menu, Output Menu, Load Impedance).\nPulsa On: la pantalla indica “Output On”.\n\n\nAtención a la amplitud “1 V de amplitud” son 2 Vpp. Con la carga en 50 Ω y un circuito de alta impedancia, la amplitud real es el doble."
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#genera-las-señales-de-las-prácticas-simulador",
+    "href": "P0_Manejo_de_equipos.html#genera-las-señales-de-las-prácticas-simulador",
+    "title": "",
+    "section": "Genera las señales de las prácticas Simulador",
+    "text": "Genera las señales de las prácticas Simulador"
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#cómo-conecto-el-polímetro-simulador",
+    "href": "P0_Manejo_de_equipos.html#cómo-conecto-el-polímetro-simulador",
+    "title": "",
+    "section": "¿Cómo conecto el polímetro? Simulador",
+    "text": "¿Cómo conecto el polímetro? Simulador"
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#el-osciloscopio",
+    "href": "P0_Manejo_de_equipos.html#el-osciloscopio",
+    "title": "",
+    "section": "El osciloscopio",
+    "text": "El osciloscopio\n\n\n\n\n\n\n\n\nMando\nPara qué sirve\n\n\n\n\nVOLTS/DIV\nEscala vertical: voltios por división\n\n\nSEC/DIV\nBase de tiempos: segundos por división\n\n\nPOSITION\nSube, baja o desplaza la señal\n\n\nCH1 / CH2 MENU\nAcoplamiento, sonda, invertir\n\n\nMEASURE · CURSOR\nMedidas automáticas y cursores\n\n\nMATH\nCanal matemático (CH1 − CH2)\n\n\nTRIG: LEVEL, SET TO 50%\nDisparo para una imagen fija\n\n\nAUTOSET · DEFAULT SETUP\nAjuste automático · volver a fábrica"
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#lee-la-pantalla-juego",
+    "href": "P0_Manejo_de_equipos.html#lee-la-pantalla-juego",
+    "title": "",
+    "section": "Lee la pantalla Juego",
+    "text": "Lee la pantalla Juego"
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#elige-las-escalas-sin-autoset-simulador",
+    "href": "P0_Manejo_de_equipos.html#elige-las-escalas-sin-autoset-simulador",
+    "title": "",
+    "section": "Elige las escalas, sin AUTOSET Simulador",
+    "text": "Elige las escalas, sin AUTOSET Simulador"
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#el-disparo-una-imagen-fija-simulador",
+    "href": "P0_Manejo_de_equipos.html#el-disparo-una-imagen-fija-simulador",
+    "title": "",
+    "section": "El disparo: una imagen fija Simulador",
+    "text": "El disparo: una imagen fija Simulador"
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#sondas-masas-y-acoplamiento",
+    "href": "P0_Manejo_de_equipos.html#sondas-masas-y-acoplamiento",
+    "title": "",
+    "section": "Sondas, masas y acoplamiento",
+    "text": "Sondas, masas y acoplamiento\n\n\n\nMuy importante Las masas de las dos sondas están unidas internamente (y a la del generador a través de la red). Conéctalas siempre al mismo punto. Para medir entre dos puntos sin masa: CH1 en A, CH2 en B y MATH = CH1 − CH2.\n\n\nSonda ×1 o ×10: el menú del canal debe indicar lo mismo que el conmutador. Compruébala con PROBE COMP (cuadrada de 5 V y 1 kHz).\nModo XY: CH2 frente a CH1. Para la curva de un diodo o un transistor (prácticas 2 y 4).\n\n\n\n\n\n\n\n\n\n\nAcoplamiento\nQué muestra\n\n\n\n\nDC\nLa señal completa, con su continua. El modo por defecto.\n\n\nAC\nQuita la continua: para ver un rizado pequeño sobre una continua grande.\n\n\nGND\nMuestra dónde está el 0 V."
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#síntoma-solución-pulsa-cada-tarjeta",
+    "href": "P0_Manejo_de_equipos.html#síntoma-solución-pulsa-cada-tarjeta",
+    "title": "",
+    "section": "Síntoma → solución Pulsa cada tarjeta",
+    "text": "Síntoma → solución Pulsa cada tarjeta\n\n  SíntomaLa pantalla muestra una línea plana.pulsaSoluciónSalida del generador en On, canal en DC (no GND) y revisa la sonda.\n  SíntomaLa señal \"baila\" o se superpone.pulsaSoluciónDisparo: fuente = canal que usas y SET TO 50%.\n  SíntomaLa amplitud es 10 veces mayor o menor.pulsaSoluciónAtenuación distinta en la sonda y en el menú: pon ×1 en los dos.\n  SíntomaLa amplitud es el doble de la esperada.pulsaSoluciónGenerador en 50 Ω (pon High Z) o confusión entre Vp y Vpp.\n  SíntomaLas medidas aparecen con \"?\".pulsaSoluciónEscala inadecuada: ajusta VOLTS/DIV y SEC/DIV.\n  SíntomaLa fuente marca CC y la tensión cae.pulsaSoluciónCortocircuito o límite bajo: apaga, revisa el montaje, ajusta el límite.\n  SíntomaEl circuito no funciona en la protoboard.pulsaSoluciónPatillas en la misma columna o línea de alimentación interrumpida: revisa con continuidad.\n  SíntomaUna señal desaparece al conectar la segunda sonda.pulsaSoluciónMasas en puntos distintos: llévalas al mismo punto y usa MATH.\n  SíntomaEl polímetro marca 0 al medir tensión.pulsaSoluciónPunta en el borne de corriente (fusible fundido) o escala AC/DC equivocada."
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#qué-has-aprendido-escanea-el-qr-resultados-en-directo",
+    "href": "P0_Manejo_de_equipos.html#qué-has-aprendido-escanea-el-qr-resultados-en-directo",
+    "title": "",
+    "section": "¿Qué has aprendido? Escanea el QR · resultados en directo",
+    "text": "¿Qué has aprendido? Escanea el QR · resultados en directo"
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#hoja-resumen",
+    "href": "P0_Manejo_de_equipos.html#hoja-resumen",
+    "title": "",
+    "section": "Hoja resumen",
+    "text": "Hoja resumen\n\n\n\n\n\n\n\nQuiero…\nHago…\n\n\n\n\nMedir una tensión continua\nPolímetro en V⎓, en paralelo, u osciloscopio en DC\n\n\nMedir la corriente\nMido la tensión en una resistencia conocida: I = V/R\n\n\nVer una señal alterna\nOsciloscopio en DC, sonda ×1, AUTOSET y ajuste fino\n\n\nMedir amplitud y frecuencia\nDivisiones × escala, o MEASURE (Vpp, Freq)\n\n\nVer sólo el rizado\nAcoplamiento AC y menos V/div\n\n\nMedir entre dos puntos sin masa\nCH1 y CH2 a cada punto, masas al GND y MATH (CH1 − CH2)\n\n\nMedir el desfase\nφ = 360°·Δt/T\n\n\nAlimentar el 741 a ±15 V\nFuente en serie (tracking), punto medio a masa\n\n\nProteger el circuito\nLimitar la corriente de la fuente antes de conectar\n\n\n\n\nV = I·R · P = V·I · f = 1/T · ω = 2πf · Vpp = 2·Vp · Vrms = Vp/√2 · Valor = div × escala"
+  },
+  {
+    "objectID": "P0_Manejo_de_equipos.html#recursos-y-créditos",
+    "href": "P0_Manejo_de_equipos.html#recursos-y-créditos",
+    "title": "",
+    "section": "Recursos y créditos",
+    "text": "Recursos y créditos\n\n\nPara seguir practicando\n\nGuía teórica y cuaderno experimental de la Práctica 0 (Moodle): haz los ejercicios de lectura de pantalla antes de la primera sesión.\nApuntes del generador Tektronix AFG serie 3000 y manual del osciloscopio.\n\nFicha del recurso\nAutora: Cristina Martínez Ruedas (ORCID 0000-0003-0089-1133). Departamento de Ingeniería Electrónica y de Computadores, Universidad de Córdoba. Circuitos y Sistemas Electrónicos, 1.er curso del Grado en Ingeniería Informática, EPS de Córdoba. Versión 1.0, octubre de 2026.\n\n\n\nLicencia Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0). Fotografías de los equipos del laboratorio de la asignatura; esquemas y simuladores de elaboración propia.\n\nVolver al inicio"
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#hoja-de-ruta",
+    "href": "P1_Filtros_pasivos.html#hoja-de-ruta",
+    "title": "",
+    "section": "Hoja de ruta",
+    "text": "Hoja de ruta\n\n\n¿Por qué le importa esto a un informático?\n\nToda señal (voz, música, wifi, bits por un cable) se puede describir por su forma en el tiempo o por las frecuencias que contiene.\nLos filtros deciden qué frecuencias pasan y cuáles no: sintonizar una emisora, limpiar audio, preparar señales para un convertidor A/D.\nLos cables y pistas de un ordenador se comportan como filtros RC: limitan la velocidad a la que viajan los bits.\n\n\nObjetivos Relacionar tiempo y frecuencia · estudiar el diferenciador (paso alto) y el integrador (paso bajo) · medir su respuesta en frecuencia y dibujar el diagrama de Bode.\n\n\n\n\n  1 · Encuesta inicialEscanea el QR y responde: ¿qué sabes ya?\n  2 · Teoría con simuladoresTiempo y frecuencia, filtros RC, laboratorio de filtros y Bode.\n  3 · Osciloscopio virtualPractica las medidas antes de tocar el equipo real.\n  4 · Laboratorio y examenProcedimiento, errores típicos y enunciados reales.\n  5 · Encuesta finalComparamos el antes y el después."
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#qué-sabes-ya-escanea-el-qr-resultados-en-directo",
+    "href": "P1_Filtros_pasivos.html#qué-sabes-ya-escanea-el-qr-resultados-en-directo",
+    "title": "",
+    "section": "¿Qué sabes ya? Escanea el QR · resultados en directo",
+    "text": "¿Qué sabes ya? Escanea el QR · resultados en directo"
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#dos-formas-de-mirar-una-señal",
+    "href": "P1_Filtros_pasivos.html#dos-formas-de-mirar-una-señal",
+    "title": "",
+    "section": "Dos formas de mirar una señal",
+    "text": "Dos formas de mirar una señal\n\n\n\nDominio del tiempo: cómo varía la tensión, v(t). Lo muestra el osciloscopio.\nDominio de la frecuencia: qué frecuencias contiene la señal y con qué amplitud. Lo muestra un analizador de espectros (o la función FFT del osciloscopio).\n\n\nLa idea de Fourier Cualquier señal periódica es una suma de senoidales (la fundamental y sus armónicos). Si sabemos cómo responde un circuito a una senoidal de cada frecuencia, sabemos cómo responde a cualquier señal.\n\n\n\n\n\n\n\nTiempo\nFrecuencia\n\n\n\n\nEje horizontal\nt (s)\nf (Hz)\n\n\nQué se ve\nLa forma de onda\nLas componentes\n\n\nInstrumento\nOsciloscopio\nAnalizador, FFT\n\n\nSenoidal pura\nOnda que se repite cada T\nUna raya en f = 1/T\n\n\nUn filtro…\ncambia la forma\natenúa unas rayas"
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#construye-una-onda-sumando-senoidales-simulador",
+    "href": "P1_Filtros_pasivos.html#construye-una-onda-sumando-senoidales-simulador",
+    "title": "",
+    "section": "Construye una onda sumando senoidales Simulador",
+    "text": "Construye una onda sumando senoidales Simulador\n\n\n\n\nSube el número de armónicos y observa cómo la suma se parece cada vez más a la onda ideal. Después activa el paso bajo: al quitar armónicos altos, la onda se “suaviza”. Eso es exactamente lo que harán tus filtros."
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#dónde-se-usan-las-frecuencias",
+    "href": "P1_Filtros_pasivos.html#dónde-se-usan-las-frecuencias",
+    "title": "",
+    "section": "¿Dónde se usan las frecuencias?",
+    "text": "¿Dónde se usan las frecuencias?\n\n  Radio y TVFM 88-108 MHzTDT 470-694 MHzSintonizar es filtrar: el receptor deja pasar sólo la banda de la emisora elegida.\n  WiFi, Bluetooth, móvil2,4 GHz5 GHzCanales separados en frecuencia. Si dos redes vecinas usan el mismo canal, se interfieren.\n  Audio20 Hz - 20 kHzEl MP3 elimina lo que no oímos; un ecualizador sube o baja bandas de frecuencia.\n  Red eléctrica50 HzAparece como \"zumbido\" en micrófonos y sensores, y se elimina con filtros.\n\n\nIdea para llevarse El osciloscopio te enseña la señal en el tiempo, pero un filtro se diseña y se entiende en frecuencia. En esta práctica medirás en el tiempo (amplitudes y retrasos) para construir una gráfica en frecuencia: el diagrama de Bode."
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#el-condensador-cambia-de-personalidad-simulador",
+    "href": "P1_Filtros_pasivos.html#el-condensador-cambia-de-personalidad-simulador",
+    "title": "",
+    "section": "El condensador “cambia de personalidad” Simulador",
+    "text": "El condensador “cambia de personalidad” Simulador"
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#diferenciador-e-integrador",
+    "href": "P1_Filtros_pasivos.html#diferenciador-e-integrador",
+    "title": "",
+    "section": "Diferenciador e integrador",
+    "text": "Diferenciador e integrador\n\nDiferenciador (paso alto)Integrador (paso bajo)Frecuencia de corte\n\n\n\n\n\n\n\nSalida en la resistencia. Para una entrada senoidal:\n\\[G=\\frac{V_s}{V_e}=\\frac{R}{R+\\frac{1}{j\\omega C}}=\\frac{1}{1-j\\,f_o/f}\\]\n\\[|G|=\\frac{1}{\\sqrt{1+(f_o/f)^2}}\\qquad \\theta=\\operatorname{arctg}\\frac{f_o}{f}\\]\nEn \\(f=f_o\\): \\(|G|=0{,}707\\) (−3 dB) y \\(\\theta=+45^\\circ\\) (la salida va adelantada).\n\n\n\n\n\n\n\n\n\nSalida en el condensador:\n\\[G=\\frac{1}{1+j\\omega RC}=\\frac{1}{1+j\\,f/f_o}\\]\n\\[|G|=\\frac{1}{\\sqrt{1+(f/f_o)^2}}\\qquad \\theta=-\\operatorname{arctg}\\frac{f}{f_o}\\]\nEn \\(f=f_o\\): \\(|G|=0{,}707\\) (−3 dB) y \\(\\theta=-45^\\circ\\) (la salida va retrasada).\n\n\n\n\n\n\nLa frecuencia de corte es aquella en la que la salida vale 0,707 veces la entrada:\n\\[G=\\frac{1}{\\sqrt 2}=0{,}707 \\;\\Rightarrow\\; G_{dB}=20\\log_{10}(0{,}707)=-3\\ \\text{dB}\\]\n\n\\[f_o=\\frac{1}{2\\pi RC}\\]\n\nCon R = 56 kΩ y C = 10 nF: \\(f_o \\approx\\) 284 Hz.\n\n\nTruco para recordarlo Si el condensador está en serie (entre entrada y salida), deja pasar las altas frecuencias: paso alto. Si está en paralelo con la salida, “cortocircuita” las altas frecuencias a masa: paso bajo."
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#laboratorio-de-filtros-qué-pasa-y-qué-no-simulador",
+    "href": "P1_Filtros_pasivos.html#laboratorio-de-filtros-qué-pasa-y-qué-no-simulador",
+    "title": "",
+    "section": "Laboratorio de filtros: ¿qué pasa y qué no? Simulador",
+    "text": "Laboratorio de filtros: ¿qué pasa y qué no? Simulador"
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#retos-para-la-clase",
+    "href": "P1_Filtros_pasivos.html#retos-para-la-clase",
+    "title": "",
+    "section": "Retos para la clase",
+    "text": "Retos para la clase\n\n\nEn el simulador anterior, abre el desplegable Modo y resuelve los retos:\n\nQuita el pitido agudo (paso bajo).\nQuita el zumbido de la red (paso alto).\n¿Imposible? Piensa por qué no se puede.\nPaso banda: aísla la nota La con dos filtros en cascada.\n\nIr al simulador ◀\n\n\nPara pensar En el reto 3 no hay valores de R y C que funcionen. ¿Qué tendría que tener el filtro para conseguirlo? Pista: mira cuántos dB por década cae la curva lejos de la frecuencia de corte."
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#por-qué-un-eje-logarítmico-juego",
+    "href": "P1_Filtros_pasivos.html#por-qué-un-eje-logarítmico-juego",
+    "title": "",
+    "section": "¿Por qué un eje logarítmico? Juego",
+    "text": "¿Por qué un eje logarítmico? Juego\n\n\n\n\n\nCada década (×10) ocupa el mismo espacio. No existe el 0 Hz.\nEntre 100 y 1000: el 200 está al 30 %, el 300 al 48 % y el 500 al 70 % de la década."
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#por-qué-decibelios-calculadora",
+    "href": "P1_Filtros_pasivos.html#por-qué-decibelios-calculadora",
+    "title": "",
+    "section": "¿Por qué decibelios? Calculadora",
+    "text": "¿Por qué decibelios? Calculadora\n\n\n\n\n\n\\[G_{dB}=20\\log_{10}\\frac{V_s}{V_e}\\]\n\n\n\nG (veces)\nG (dB)\nSignifica\n\n\n\n\n1\n0 dB\nPasa sin atenuarse\n\n\n0,707\n−3 dB\nFrecuencia de corte\n\n\n0,5\n−6 dB\nAmplitud a la mitad\n\n\n0,1\n−20 dB\nDividida por 10\n\n\n0,01\n−40 dB\nDividida por 100\n\n\n\n\nPara tensiones, siempre 20·log, nunca 10·log."
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#bode-interactivo-y-tus-medidas-simulador",
+    "href": "P1_Filtros_pasivos.html#bode-interactivo-y-tus-medidas-simulador",
+    "title": "",
+    "section": "Bode interactivo y tus medidas Simulador",
+    "text": "Bode interactivo y tus medidas Simulador"
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#cómo-construir-tu-bode-experimental",
+    "href": "P1_Filtros_pasivos.html#cómo-construir-tu-bode-experimental",
+    "title": "",
+    "section": "Cómo construir tu Bode experimental",
+    "text": "Cómo construir tu Bode experimental\n\n\n\nPara cada frecuencia calcula \\(G=V_s/V_e\\), \\(G_{dB}=20\\log G\\) y \\(\\varphi=360^\\circ\\cdot\\Delta t/T\\).\nEscribe las décadas (10, 100, 1 k, 10 k) bajo el eje del papel semilogarítmico.\nSitúa cada punto en su frecuencia (no a distancias iguales).\nUne los puntos con una curva suave.\nBusca la \\(f_o\\) experimental: 3 dB por debajo de la zona plana. Compruébala con la fase (±45°).\nElige frecuencias repartidas en décadas: 30, 90, 150, \\(f_o\\), 600, 1500 y 3000 Hz.\n\n\n\n\n  ✗ ErrorDibujar con eje de frecuencias lineal o repartir los puntos a distancias iguales.pulsa para girar✓ Así síPapel semilogarítmico: cada punto en su posición logarítmica.\n  ✗ ErrorPoner en el eje vertical G (veces) en lugar de G en dB.pulsa para girar✓ Así síEl módulo del Bode va en decibelios: 20·log|G|.\n  ✗ ErrorBuscar la fo en −3 dB cuando la zona plana no está en 0 dB.pulsa para girar✓ Así síLa referencia es siempre la zona plana: fo está 3 dB por debajo de ella.\n  ✗ ErrorOlvidar el signo de la fase o darla en radianes sin indicarlo.pulsa para girar✓ Así síIntegrador: fase negativa (retraso). Diferenciador: positiva (adelanto). En grados."
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#osciloscopio-virtual-simulador",
+    "href": "P1_Filtros_pasivos.html#osciloscopio-virtual-simulador",
+    "title": "",
+    "section": "Osciloscopio virtual Simulador",
+    "text": "Osciloscopio virtual Simulador"
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#qué-verás-en-el-osciloscopio",
+    "href": "P1_Filtros_pasivos.html#qué-verás-en-el-osciloscopio",
+    "title": "",
+    "section": "¿Qué verás en el osciloscopio?",
+    "text": "¿Qué verás en el osciloscopio?\n\n\nA la frecuencia de corte, con 1 V de amplitud en la entrada, la salida tiene unos 0,707 V y está desfasada unos 45°. El desfase se mide como un retraso (o adelanto) Δt entre las dos señales:\n\n\\[\\varphi = 360^\\circ\\cdot\\frac{\\Delta t}{T}\\]\n\nEjemplo: T = 3,52 ms y Δt = 0,43 ms ⇒ φ ≈ 44°.\n\n\n¿Por qué “diferenciador” e “integrador”? Si f ≪ fo, la salida del paso alto es casi la derivada de la entrada: \\(V_s \\approx RC\\,\\frac{dV_e}{dt}\\). Si f ≫ fo, la salida del paso bajo es casi la integral: \\(V_s \\approx \\frac{1}{RC}\\int V_e\\,dt\\).\nPruébalo en el osciloscopio virtual: onda cuadrada, diferenciador a fo/10 (picos) e integrador a 10·fo (triangular)."
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#material-y-procedimiento-lista-de-comprobación",
+    "href": "P1_Filtros_pasivos.html#material-y-procedimiento-lista-de-comprobación",
+    "title": "",
+    "section": "Material y procedimiento Lista de comprobación",
+    "text": "Material y procedimiento Lista de comprobación\n\n\n\n\n\nEquipos\nComponentes\n\n\n\n\nOsciloscopio\nR = 56 kΩ, ½ W\n\n\nGenerador de funciones\nC = 0,01 µF (10 nF)\n\n\nPolímetro\nProtoboard y cables\n\n\n\n\nAntes de entrar Calcula \\(f_o\\), la amplitud esperada a la salida en \\(f_o\\) y una base de tiempos que muestre 2 periodos de 284 Hz.\n\n\n\n\n\n  Mido R y C con el polímetro y calculo fo teórica.\n  Monto el diferenciador y conecto CH1 a la entrada y CH2 a la salida, con las masas en el mismo punto.\n  Senoidal de 1 V de amplitud a fo: dibujo Ve y Vs (2 periodos) anotando V/div y s/div.\n  Mido Ve, Vs y Δt en 7 frecuencias (3 por debajo, fo, 3 por encima). Vuelvo a medir Ve en cada una.\n  Dibujo el Bode (módulo y fase) y obtengo fo experimental y el error.\n  Repito todo con el integrador.\n  Onda cuadrada: diferenciador a 30 Hz e integrador a 3 kHz.\n  Apago los equipos, desmonto y recojo cables y sondas."
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#teórico-frente-a-experimental-no-los-mezcles",
+    "href": "P1_Filtros_pasivos.html#teórico-frente-a-experimental-no-los-mezcles",
+    "title": "",
+    "section": "Teórico frente a experimental: no los mezcles",
+    "text": "Teórico frente a experimental: no los mezcles\n\n\n\n\n\n\n\n\nMagnitud\nTeórica (se CALCULA)\nExperimental (se MIDE)\n\n\n\n\nDatos de partida\nR y C nominales y la frecuencia f\nVe, Vs, Δt y T leídos en el osciloscopio\n\n\nFrecuencia de corte\n\\(f_o = 1/(2\\pi RC)\\)\nf a la que Vs = 0,707·Ve (o φ = ±45°), girando el mando del generador\n\n\nGanancia\n\\(\\lvert G\\rvert = 1/\\sqrt{1+(f/f_o)^2}\\) (integrador)\nG = Vs/Ve (cociente de dos medidas)\n\n\nGanancia en dB\n20·log|G| con el |G| teórico\n20·log(Vs/Ve) con las medidas\n\n\nFase\n−arctg(f/fo) o +arctg(fo/f)\nφ = 360°·Δt/T\n\n\n¿Interviene R o C?\nSí, siempre\nNo: sólo tensiones y tiempos\n\n\n\n\n¿Cuánto error es normal? Con tolerancias de ±5 % (R) y ±10 % (C), la fo real puede estar entre 246 y 332 Hz. Un error del 5 % es perfectamente razonable. Comenta siempre el error y su causa."
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#errores-frecuentes-pulsa-cada-tarjeta",
+    "href": "P1_Filtros_pasivos.html#errores-frecuentes-pulsa-cada-tarjeta",
+    "title": "",
+    "section": "Errores frecuentes Pulsa cada tarjeta",
+    "text": "Errores frecuentes Pulsa cada tarjeta\n\n  ✗Rellenar la columna experimental con fo = 1/(2πRC).pulsa✓Eso es teórico. La fo experimental se busca midiendo.\n  ✗Calcular la G experimental con la fórmula del módulo.pulsa✓La G experimental es sólo Vs/Ve.\n  ✗Usar Vpp en la entrada y Vp en la salida.pulsa✓Usa la misma magnitud en las dos o el cociente saldrá el doble o la mitad.\n  ✗Medir con las dos sondas sin tener las masas en el mismo punto.pulsa✓Las masas del osciloscopio están unidas entre sí: conéctalas siempre al mismo nodo.\n  ✗No volver a medir Ve al cambiar la frecuencia.pulsa✓El generador cambia ligeramente su amplitud con la frecuencia: mide Ve en cada punto.\n  ✗Dar un error sin comentarlo.pulsa✓Di siempre si es razonable y por qué (tolerancias, lectura, instrumentos)."
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#dónde-hay-un-filtro-rc",
+    "href": "P1_Filtros_pasivos.html#dónde-hay-un-filtro-rc",
+    "title": "",
+    "section": "¿Dónde hay un filtro RC?",
+    "text": "¿Dónde hay un filtro RC?\n\n  Filtro de cruce de altavocespaso bajo + alto2-3 kHzGraves al woofer, agudos al tweeter.\n  Acoplamiento ACpaso alto≈ 10 HzEl botón AC del osciloscopio es ¡un diferenciador RC! Quita la continua.\n  Antialiasing (tarjeta de sonido)paso bajo≈ 20 kHzQuita lo que el convertidor A/D no puede muestrear.\n  Antirrebote de un pulsadorpaso bajoτ ≈ 10 msR = 10 kΩ, C = 1 µF: una pulsación no se lee como varias.\n  PWM de Arduino → analógicopaso bajoConvierte los pulsos en una tensión casi continua. Pruébalo en la siguiente diapositiva.\n  Condensadores de desacoplopaso bajoMHzLimpian la alimentación de procesadores y memorias.\n  Microfiltro ADSLpaso bajo≈ 4 kHzSepara la voz del teléfono de los datos por el mismo cable.\n  Pistas de una placa baseRC parásitoRedondean los flancos de los bits y limitan la velocidad máxima."
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#del-pwm-a-una-tensión-analógica-simulador",
+    "href": "P1_Filtros_pasivos.html#del-pwm-a-una-tensión-analógica-simulador",
+    "title": "",
+    "section": "Del PWM a una tensión analógica Simulador",
+    "text": "Del PWM a una tensión analógica Simulador"
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#así-es-el-examen-de-laboratorio",
+    "href": "P1_Filtros_pasivos.html#así-es-el-examen-de-laboratorio",
+    "title": "",
+    "section": "Así es el examen de laboratorio",
+    "text": "Así es el examen de laboratorio\n\n\n\n\n\nApartado\nPuntos\n\n\n\n\nIdentificar el circuito y sus características\n1\n\n\nfc, ganancia y fase teóricas en fc\n1,5\n\n\nRepresentar Ve y Vs a la frecuencia de corte\n2\n\n\nTabla de 6 a 8 medidas (f, Ve, Vs, G, dB, fase)\n4\n\n\nDiagrama de Bode (módulo y fase)\n1,5\n\n\n\n\n\n\nLo que más puntúa La tabla de medidas (4 puntos) y la representación con escalas (2 puntos). Practica con el osciloscopio virtual cómo elegir V/div y s/div.\n\n\nAtención a las unidades Desde 2022 la amplitud suele darse en Vpp. Si Ve está en Vpp, Vs también."
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#entrena-con-enunciados-reales-2021-2026-simulador",
+    "href": "P1_Filtros_pasivos.html#entrena-con-enunciados-reales-2021-2026-simulador",
+    "title": "",
+    "section": "Entrena con enunciados reales (2021-2026) Simulador",
+    "text": "Entrena con enunciados reales (2021-2026) Simulador"
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#qué-has-aprendido-escanea-el-qr-resultados-en-directo",
+    "href": "P1_Filtros_pasivos.html#qué-has-aprendido-escanea-el-qr-resultados-en-directo",
+    "title": "",
+    "section": "¿Qué has aprendido? Escanea el QR · resultados en directo",
+    "text": "¿Qué has aprendido? Escanea el QR · resultados en directo"
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#resumen",
+    "href": "P1_Filtros_pasivos.html#resumen",
+    "title": "",
+    "section": "Resumen",
+    "text": "Resumen\n\n\n\n\n\n\n\n\n\nDiferenciador\nIntegrador\n\n\n\n\nTipo de filtro\nPaso alto\nPaso bajo\n\n\nSalida en…\nla resistencia\nel condensador\n\n\nGanancia\n1/(1 − j·fo/f)\n1/(1 + j·f/fo)\n\n\nEn f = fo\n0,707 (−3 dB), +45°\n0,707 (−3 dB), −45°\n\n\nPendiente lejos de fo\n+20 dB/década (por debajo)\n−20 dB/década (por encima)\n\n\nCon R = 56 kΩ, C = 10 nF\nfo ≈ 284 Hz\nfo ≈ 284 Hz\n\n\n\n\n\n1 Un filtro se entiende en frecuencia, pero se mide en el tiempo.\n\n\n2 fo = 1/(2πRC): ahí la salida es 0,707·Ve (−3 dB) y la fase ±45°.\n\n\n3 Lejos de fo, un RC cae 20 dB por década."
+  },
+  {
+    "objectID": "P1_Filtros_pasivos.html#recursos-y-créditos",
+    "href": "P1_Filtros_pasivos.html#recursos-y-créditos",
+    "title": "",
+    "section": "Recursos y créditos",
+    "text": "Recursos y créditos\n\n\nPara seguir practicando\n\nCuaderno de laboratorio y fundamento teórico de la Práctica 1 (Moodle).\nSimuladores de circuitos: Falstad, LTspice o Multisim.\nHoja de papel semilogarítmico para el Bode.\n\nFicha del recurso\nAutora: Cristina Martínez Ruedas (ORCID 0000-0003-0089-1133). Departamento de Ingeniería Electrónica y de Computadores, Universidad de Córdoba. Circuitos y Sistemas Electrónicos, 1.er curso del Grado en Ingeniería Informática, EPS de Córdoba. Versión 1.0, octubre de 2026.\n\n\n\nLicencia Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0). Todos los esquemas, gráficas y simuladores son de elaboración propia.\n\nVolver al inicio"
+  },
+  {
+    "objectID": "P3_Rectificadores.html#hoja-de-ruta",
+    "href": "P3_Rectificadores.html#hoja-de-ruta",
+    "title": "",
+    "section": "Hoja de ruta",
+    "text": "Hoja de ruta\n\n\nAsí se alimenta tu ordenador\n\nLa red eléctrica es alterna (230 V, 50 Hz), pero los circuitos digitales necesitan continua (12 V, 5 V, 3,3 V).\nTodo cargador o fuente de alimentación tiene un rectificador seguido de un filtro.\nEl puente de Graetz que montarás es el mismo que hay dentro de muchos cargadores.\n\n\nObjetivos Conocer la estructura de una fuente de alimentación · estudiar los rectificadores de media onda, onda completa y en puente · calcular y medir los valores medio y eficaz y los factores de forma y rizado · comprender el filtrado con condensador.\n\n\n\n\n  1 · Encuesta inicialEscanea el QR: ¿qué sabes ya?\n  2 · La fuente de alimentaciónConstrúyela bloque a bloque.\n  3 · RectificadoresMedia onda, onda completa y puente, animados.\n  4 · Medir bienValor medio, eficaz, polímetro y masas del osciloscopio.\n  5 · Laboratorio, aplicaciones y examenY encuesta final para comparar."
+  },
+  {
+    "objectID": "P3_Rectificadores.html#qué-sabes-ya-escanea-el-qr-resultados-en-directo",
+    "href": "P3_Rectificadores.html#qué-sabes-ya-escanea-el-qr-resultados-en-directo",
+    "title": "",
+    "section": "¿Qué sabes ya? Escanea el QR · resultados en directo",
+    "text": "¿Qué sabes ya? Escanea el QR · resultados en directo"
+  },
+  {
+    "objectID": "P3_Rectificadores.html#construye-una-fuente-de-alimentación-simulador",
+    "href": "P3_Rectificadores.html#construye-una-fuente-de-alimentación-simulador",
+    "title": "",
+    "section": "Construye una fuente de alimentación Simulador",
+    "text": "Construye una fuente de alimentación Simulador\n\n\n\n\nActiva y desactiva cada bloque y observa la tensión a la salida. En esta práctica estudiamos el rectificador y el filtro."
+  },
+  {
+    "objectID": "P3_Rectificadores.html#magnitudes-que-vamos-a-usar",
+    "href": "P3_Rectificadores.html#magnitudes-que-vamos-a-usar",
+    "title": "",
+    "section": "Magnitudes que vamos a usar",
+    "text": "Magnitudes que vamos a usar\n\n\n\n\n\n\n\nMagnitud\nSignificado\n\n\n\n\nValor medio Vmed\nComponente continua de la señal. Lo mide el polímetro en escala DC.\n\n\nValor eficaz Vrms\nTensión continua que produciría el mismo calentamiento en una resistencia.\n\n\nFactor de forma Kf = Vrms/Vmed\nCuanto más próximo a 1, más “continua” es la señal.\n\n\nFactor de rizado \\(K_r=\\sqrt{K_f^2-1}\\)\nMide la componente alterna que queda. Ideal: 0.\n\n\nRendimiento η\nPotencia continua entregada a la carga frente a la potencia total.\n\n\n\n\nRecuerda Vrms² = Vmed² + VAC²: la señal rectificada es una continua más una alterna (el rizado)."
+  },
+  {
+    "objectID": "P3_Rectificadores.html#media-onda-onda-completa-y-puente-simulador",
+    "href": "P3_Rectificadores.html#media-onda-onda-completa-y-puente-simulador",
+    "title": "",
+    "section": "Media onda, onda completa y puente Simulador",
+    "text": "Media onda, onda completa y puente Simulador"
+  },
+  {
+    "objectID": "P3_Rectificadores.html#las-fórmulas-de-un-vistazo",
+    "href": "P3_Rectificadores.html#las-fórmulas-de-un-vistazo",
+    "title": "",
+    "section": "Las fórmulas, de un vistazo",
+    "text": "Las fórmulas, de un vistazo\n\nMedia ondaToma intermediaPuente de GraetzFiltro con condensador\n\n\n\n\nUn solo diodo deja pasar los semiciclos positivos y bloquea los negativos.\n\\[V_{med}=\\frac{V_{max}}{\\pi}\\qquad V_{rms}=\\frac{V_{max}}{2}\\]\n\\[K_f=1{,}57\\qquad K_r=1{,}21\\]\n\n\nInconvenientes Rendimiento bajo (≈ 40 %), mucho rizado y rizado a la frecuencia de la red (f).\n\n\n\n\n\n\nDos diodos y un transformador con toma intermedia: en cada semiciclo conduce uno.\n\\[V_{med}=\\frac{2V_{max}}{\\pi}\\qquad V_{rms}=\\frac{V_{max}}{\\sqrt 2}\\]\n\\[K_f=1{,}11\\qquad K_r=0{,}48\\]\n\n\nOjo Cada diodo soporta en inversa unos 2·Vmax, y el transformador es más caro.\n\n\n\n\n\n\nCuatro diodos, onda completa sin toma intermedia. En cada semiciclo conducen dos diodos en serie: la caída es de unos 2·Vγ ≈ 1,4 V.\n\\[V_{max}=V_p-2V_\\gamma\\qquad V_{med}=\\frac{2V_{max}}{\\pi}\\]\n\n\nEl más usado Aprovecha mejor el transformador. Lo encontrarás ya integrado en un solo encapsulado de cuatro patillas (~, ~, +, −).\n\n\n\n\n\n\nEl condensador se carga hasta el pico y se descarga lentamente a través de la carga:\n\\[V_r\\approx\\frac{I_{med}}{2fC}\\ \\text{(onda completa)}\\qquad V_{med}\\approx V_p-\\frac{V_r}{2}\\]\nEn media onda, \\(V_r\\approx I_{med}/(fC)\\).\n\n\nCuidado Los electrolíticos tienen polaridad: montados al revés pueden explotar."
+  },
+  {
+    "objectID": "P3_Rectificadores.html#cuánto-condensador-necesito-calculadora",
+    "href": "P3_Rectificadores.html#cuánto-condensador-necesito-calculadora",
+    "title": "",
+    "section": "¿Cuánto condensador necesito? Calculadora",
+    "text": "¿Cuánto condensador necesito? Calculadora"
+  },
+  {
+    "objectID": "P3_Rectificadores.html#qué-mide-el-polímetro-simulador",
+    "href": "P3_Rectificadores.html#qué-mide-el-polímetro-simulador",
+    "title": "",
+    "section": "¿Qué mide el polímetro? Simulador",
+    "text": "¿Qué mide el polímetro? Simulador"
+  },
+  {
+    "objectID": "P3_Rectificadores.html#dónde-pongo-la-masa-del-osciloscopio-simulador",
+    "href": "P3_Rectificadores.html#dónde-pongo-la-masa-del-osciloscopio-simulador",
+    "title": "",
+    "section": "¿Dónde pongo la masa del osciloscopio? Simulador",
+    "text": "¿Dónde pongo la masa del osciloscopio? Simulador"
+  },
+  {
+    "objectID": "P3_Rectificadores.html#material-y-procedimiento-lista-de-comprobación",
+    "href": "P3_Rectificadores.html#material-y-procedimiento-lista-de-comprobación",
+    "title": "",
+    "section": "Material y procedimiento Lista de comprobación",
+    "text": "Material y procedimiento Lista de comprobación\n\n\n\n\n\nEquipos\nComponentes\n\n\n\n\nFuente y transformador\nR = 1 kΩ, 2 W\n\n\nGenerador de funciones\nR = 47 Ω, 10 W\n\n\nPolímetro\nPuente o 4 diodos 1N4007\n\n\nOsciloscopio\nDiodo 1N4007, C = 100 µF\n\n\n\n\nAntes de entrar Con 10 V de pico calcula Vmed y Vrms en media onda y en el puente (ideal y con Vγ). ¿Basta una resistencia de ¼ W?\n\n\n\n\n\n  Monto el rectificador de media onda: 10 V de pico, 100 Hz, R = 1 kΩ (2 o 4 W).\n  Dibujo la tensión en la carga VR y en el diodo Vd, con escalas.\n  Mido Vmed y Vrms con el polímetro y con MEASURE, y calculo Kf y Kr.\n  Monto el puente de Graetz cuidando la masa (CH1 − CH2 o fuente aislada).\n  Dibujo la tensión en la carga y en un diodo, y repito las medidas.\n  Calculo la potencia en R en los dos montajes.\n  Añado C = 100 µF (¡polaridad!) y mido el rizado Vr.\n  Apago los equipos, desmonto y recojo cables y sondas."
+  },
+  {
+    "objectID": "P3_Rectificadores.html#errores-frecuentes-pulsa-cada-tarjeta",
+    "href": "P3_Rectificadores.html#errores-frecuentes-pulsa-cada-tarjeta",
+    "title": "",
+    "section": "Errores frecuentes Pulsa cada tarjeta",
+    "text": "Errores frecuentes Pulsa cada tarjeta\n\n  ✗Medir la señal rectificada con el polímetro en AC y tomarlo como eficaz.pulsa✓En AC el polímetro no da el eficaz real de una señal rectificada: usa el MEASURE del osciloscopio.\n  ✗En el puente, poner la masa de la sonda en un punto que no es masa del generador.pulsa✓Cortocircuitas un diodo. Usa CH1 − CH2 o una fuente aislada.\n  ✗Usar una resistencia de ¼ W con potencias de varios vatios.pulsa✓Se quema. Calcula siempre P = Vrms²/R antes de montar.\n  ✗Montar el electrolítico con la polaridad invertida.pulsa✓La franja marca el terminal negativo. Al revés se calienta y puede explotar.\n  ✗Olvidar las caídas de los diodos en los cálculos teóricos.pulsa✓Media onda: Vp − 0,7 V. Puente: Vp − 1,4 V (dos diodos en serie).\n  ✗Ver la salida con acoplamiento AC.pulsa✓En AC se pierde la continua: usa DC para ver la forma real (AC sólo para ampliar el rizado)."
+  },
+  {
+    "objectID": "P3_Rectificadores.html#dónde-hay-un-rectificador",
+    "href": "P3_Rectificadores.html#dónde-hay-un-rectificador",
+    "title": "",
+    "section": "¿Dónde hay un rectificador?",
+    "text": "¿Dónde hay un rectificador?\n\n  Cargador del portátilpuente + filtroRectifica directamente los 230 V y después una fuente conmutada baja la tensión.\n  Fuente ATX del PC12 V · 5 V · 3,3 VPuente de entrada y diodos Schottky rápidos a la salida.\n  Cargador USB5 VDiminuto gracias a trabajar a alta frecuencia: condensadores pequeños.\n  Placa basereguladoresConvierten los 12 V en ≈ 1 V para el procesador con un rizado de milivoltios.\n  Radio AMdetector de envolventeUn diodo y un condensador recuperan el sonido de la onda modulada.\n  Etiquetas RFID y NFCsin bateríaRectifican la señal de radio del lector para alimentarse.\n  Carga inalámbrica (Qi)bobina + puenteEl móvil rectifica la alterna que recibe por su bobina.\n  Multiplicadores de tensióndiodos + CGeneran altas tensiones (flashes, pantallas antiguas)."
+  },
+  {
+    "objectID": "P3_Rectificadores.html#así-es-el-examen-de-laboratorio",
+    "href": "P3_Rectificadores.html#así-es-el-examen-de-laboratorio",
+    "title": "",
+    "section": "Así es el examen de laboratorio",
+    "text": "Así es el examen de laboratorio\n\n\n\n\n\nApartado\nPuntos\n\n\n\n\nIdentificar el circuito y sus características\n1\n\n\nRepresentar la salida (2 periodos)\n1,5 a 3\n\n\nRepresentar la caída en el diodo\n1,5 a 2,5\n\n\nVmed (y Vrms) teórica y experimental\n1 a 1,5\n\n\nPotencia disipada en la resistencia\n1 a 1,5\n\n\nFactor de forma o de rizado\n1,5\n\n\nPuente de Graetz: esquema y salida esperada\n1 a 2\n\n\n\n\n\n\nFíjate en las unidades Los enunciados dan la entrada en Vpp: la tensión de pico es la mitad.\n\n\nPregunta fija Casi siempre se pide el esquema del puente y su salida esperada. Practícalo en el simulador."
+  },
+  {
+    "objectID": "P3_Rectificadores.html#entrena-con-enunciados-reales-2022-2026-simulador",
+    "href": "P3_Rectificadores.html#entrena-con-enunciados-reales-2022-2026-simulador",
+    "title": "",
+    "section": "Entrena con enunciados reales (2022-2026) Simulador",
+    "text": "Entrena con enunciados reales (2022-2026) Simulador"
+  },
+  {
+    "objectID": "P3_Rectificadores.html#qué-has-aprendido-escanea-el-qr-resultados-en-directo",
+    "href": "P3_Rectificadores.html#qué-has-aprendido-escanea-el-qr-resultados-en-directo",
+    "title": "",
+    "section": "¿Qué has aprendido? Escanea el QR · resultados en directo",
+    "text": "¿Qué has aprendido? Escanea el QR · resultados en directo"
+  },
+  {
+    "objectID": "P3_Rectificadores.html#resumen",
+    "href": "P3_Rectificadores.html#resumen",
+    "title": "",
+    "section": "Resumen",
+    "text": "Resumen\n\n\n\n\nMedia onda\nOnda completa (toma)\nPuente de Graetz\n\n\n\n\nN.º de diodos\n1\n2\n4\n\n\nVmed\nVmax/π\n2·Vmax/π\n2·Vmax/π\n\n\nVrms\nVmax/2\nVmax/√2\nVmax/√2\n\n\nKf / Kr\n1,57 / 1,21\n1,11 / 0,48\n1,11 / 0,48\n\n\nFrecuencia del rizado\nf\n2f\n2f\n\n\nCaída en los diodos\nVγ\nVγ\n2·Vγ\n\n\n\n\n\n1 Fuente = transformador + rectificador + filtro + regulador.\n\n\n2 Vmed con el polímetro en DC; Vrms con el MEASURE del osciloscopio.\n\n\n3 Más condensador, menos rizado: Vr ≈ Imed/(2fC)."
+  },
+  {
+    "objectID": "P3_Rectificadores.html#recursos-y-créditos",
+    "href": "P3_Rectificadores.html#recursos-y-créditos",
+    "title": "",
+    "section": "Recursos y créditos",
+    "text": "Recursos y créditos\n\n\nPara seguir practicando\n\nCuaderno de laboratorio y fundamento teórico de la Práctica 3 (Moodle).\nSimuladores de circuitos: Falstad, LTspice o Multisim.\n\nFicha del recurso\nAutora: Cristina Martínez Ruedas (ORCID 0000-0003-0089-1133). Departamento de Ingeniería Electrónica y de Computadores, Universidad de Córdoba. Circuitos y Sistemas Electrónicos, 1.er curso del Grado en Ingeniería Informática, EPS de Córdoba. Versión 1.0, octubre de 2026.\n\n\n\nLicencia Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0). Todos los esquemas, gráficas y simuladores son de elaboración propia.\n\nVolver al inicio"
+  },
+  {
+    "objectID": "P5_Transistor_II.html#hoja-de-ruta",
+    "href": "P5_Transistor_II.html#hoja-de-ruta",
+    "title": "",
+    "section": "Hoja de ruta",
+    "text": "Hoja de ruta\n\n\nFijar el punto de trabajo es como calibrar un sensor\n\nPara amplificar una señal (por ejemplo, la de un micrófono) el transistor debe estar en zona activa, en un punto estable.\nLa β cambia de un transistor a otro y con la temperatura: un buen circuito de polarización debe “olvidarse” de ella.\nEl divisor de tensión que verás es el circuito más utilizado en la práctica.\n\n\nObjetivos Comprender la utilidad de los circuitos de polarización · conocer y comparar los cuatro métodos · calcular las resistencias para un punto de trabajo dado.\n\n\n\n\n  1 · Encuesta inicialEscanea el QR: ¿qué sabes ya?\n  2 · ¿Por qué importa Q?Amplificar sin recortar.\n  3 · Los cuatro montajesCompáralos cambiando β y la temperatura.\n  4 · DiseñoCalcula las resistencias para tu punto Q.\n  5 · Laboratorio, aplicaciones y examenY encuesta final para comparar."
+  },
+  {
+    "objectID": "P5_Transistor_II.html#qué-sabes-ya-escanea-el-qr-resultados-en-directo",
+    "href": "P5_Transistor_II.html#qué-sabes-ya-escanea-el-qr-resultados-en-directo",
+    "title": "",
+    "section": "¿Qué sabes ya? Escanea el QR · resultados en directo",
+    "text": "¿Qué sabes ya? Escanea el QR · resultados en directo"
+  },
+  {
+    "objectID": "P5_Transistor_II.html#repaso-zonas-y-punto-de-trabajo",
+    "href": "P5_Transistor_II.html#repaso-zonas-y-punto-de-trabajo",
+    "title": "",
+    "section": "Repaso: zonas y punto de trabajo",
+    "text": "Repaso: zonas y punto de trabajo\n\n\n\n\n\n\n\n\n\n\nZona\nCondición\nUso\n\n\n\n\nCorte\nIB = 0 → IC ≈ 0, VCE ≈ VCC\nInterruptor abierto\n\n\nActiva\nIC = β·IB\nAmplificador\n\n\nSaturación\nVCE ≈ 0,2 V, IC = IC,sat\nInterruptor cerrado\n\n\n\nAl variar IB, Q se desplaza por la recta de carga, que corta los ejes en (0; VCC/RC) y (VCC; 0). Fijar ese punto de origen se llama polarizar.\n\n\n\nDos condiciones para Q 1. Dentro de la zona activa y, para la máxima excursión sin deformación, cerca del centro de la recta (VCE ≈ VCC/2). 2. Estable: no debe moverse si cambias el transistor (otra β) o si sube la temperatura."
+  },
+  {
+    "objectID": "P5_Transistor_II.html#por-qué-importa-el-punto-q-simulador",
+    "href": "P5_Transistor_II.html#por-qué-importa-el-punto-q-simulador",
+    "title": "",
+    "section": "¿Por qué importa el punto Q? Simulador",
+    "text": "¿Por qué importa el punto Q? Simulador"
+  },
+  {
+    "objectID": "P5_Transistor_II.html#los-cuatro-montajes",
+    "href": "P5_Transistor_II.html#los-cuatro-montajes",
+    "title": "",
+    "section": "Los cuatro montajes",
+    "text": "Los cuatro montajes\n\nFijaR. de emisorR. de colectorDivisor de tensión\n\n\n\n\n\\[R_B=\\frac{V_{CC}-0{,}7}{I_B}\\qquad R_C=\\frac{V_{CC}-V_C}{I_C}\\]\nRB resulta de valor elevado. El punto Q depende directamente de β.\n\n\n\nFortalezas El más sencillo: dos resistencias y cálculo inmediato. Útil en conmutación (Práctica 4).\n\n\nDesventajas Si β se duplica, IC se duplica · no compensa la temperatura · puede embalarse hacia saturación.\n\n\n\n\n\n\n\n\\[V_b=0{,}7+R_E\\cdot I_E\\qquad R_B=\\frac{V_{CC}-V_b}{I_B}\\qquad R_E\\approx\\frac{R_C}{4}\\]\nSi IC tiende a subir, sube la tensión en RE, sube Vb y baja IB: realimentación negativa.\n\n\n\nFortalezas Una sola resistencia más · más estable que la fija · RB menor.\n\n\nDesventajas Sólo mejora mucho si RE es grande, pero entonces baja VCE (riesgo de saturación) · sigue dependiendo de β.\n\n\n\n\n\n\n\n\\[R_C=\\frac{V_{CC}-V_C}{I_C+I_B}\\qquad R_B=\\frac{V_C-0{,}7}{I_B}\\]\nRB toma la tensión del colector: si IC sube, baja VCE, baja la corriente por RB y baja IB.\n\n\n\nFortalezas Dos resistencias · buena estabilidad · nunca satura: aunque RB = 0, VCE ≥ 0,7 V.\n\n\nDesventajas Sigue dependiendo de β (menos) · la realimentación reduce también la ganancia.\n\n\n\n\n\n\n\n\\[V_B=0{,}7+I_C R_E\\quad R_2=\\frac{V_B}{9I_B}\\quad R_1=\\frac{V_{CC}-V_B}{10I_B}\\]\nAnálisis exacto con el equivalente de Thévenin:\n\\[I_B=\\frac{V_{BB}-V_{BE}}{R_{BB}+(\\beta+1)R_E}\\]\n\n\n\nFortalezas Prácticamente independiente de β · la mejor estabilidad térmica · la más usada.\n\n\nDesventajas Cuatro resistencias y más cálculo · el divisor consume corriente siempre · RE reduce la ganancia."
+  },
+  {
+    "objectID": "P5_Transistor_II.html#compara-los-cuatro-montajes-cambia-β-y-la-temperatura-simulador",
+    "href": "P5_Transistor_II.html#compara-los-cuatro-montajes-cambia-β-y-la-temperatura-simulador",
+    "title": "",
+    "section": "Compara los cuatro montajes: cambia β y la temperatura Simulador",
+    "text": "Compara los cuatro montajes: cambia β y la temperatura Simulador"
+  },
+  {
+    "objectID": "P5_Transistor_II.html#la-comparación-en-una-tabla",
+    "href": "P5_Transistor_II.html#la-comparación-en-una-tabla",
+    "title": "",
+    "section": "La comparación, en una tabla",
+    "text": "La comparación, en una tabla\n\n\n\n\n\n\n\n\n\n\n\n\nMontaje\nResistencias\nIC depende de β\nSi β se duplica, IC…\nEstabilidad térmica\n¿Puede saturar?\nUso típico\n\n\n\n\nFija\nRB, RC\nTotalmente\n+100 % (satura)\nMala\nSí\nConmutación\n\n\nR. de emisor\nRB, RC, RE\nParcialmente\n+74 %\nRegular\nSí, si RE es grande\nAmplificadores sencillos\n\n\nR. de colector\nRB, RC\nParcialmente\n+30 %\nBuena\nNo\nEtapas sencillas y robustas\n\n\nDivisor\nR1, R2, RC, RE\nCasi nada\n+6 %\nMuy buena\nSólo por mal diseño\nAmplificadores\n\n\n\n\nConclusión Cuanto más realimentado está el circuito, menos depende Q de β y de la temperatura. El precio: más componentes y algo menos de ganancia."
+  },
+  {
+    "objectID": "P5_Transistor_II.html#diseña-la-polarización-para-tu-punto-q-calculadora",
+    "href": "P5_Transistor_II.html#diseña-la-polarización-para-tu-punto-q-calculadora",
+    "title": "",
+    "section": "Diseña la polarización para tu punto Q Calculadora",
+    "text": "Diseña la polarización para tu punto Q Calculadora\n\n\n\n\n\nNo olvides normalizar Elige el valor comercial más próximo y recalcula el punto Q con él.\n\n\nVC no es VCE VC se mide del colector a masa; VCE, del colector al emisor. Sólo coinciden si RE = 0."
+  },
+  {
+    "objectID": "P5_Transistor_II.html#material-y-procedimiento-lista-de-comprobación",
+    "href": "P5_Transistor_II.html#material-y-procedimiento-lista-de-comprobación",
+    "title": "",
+    "section": "Material y procedimiento Lista de comprobación",
+    "text": "Material y procedimiento Lista de comprobación\n\n\n\n\n\nEquipos\nComponentes\n\n\n\n\nFuente de alimentación\nBD137 (β = 145)\n\n\nPolímetro\n18 kΩ, 180 kΩ, 100 kΩ, 220 kΩ, 4,7 kΩ\n\n\n\n820 Ω y 220 Ω (½ W)\n\n\n\n\nPunto de trabajo de la práctica VC = 7 V, IC = 9,75 mA, VCC = 15 V, β = 145. Calcula antes RC e IB.\n\n\n\n\n\n  Mido la β de mi transistor con el zócalo hFE del polímetro.\n  Calculo RC y RB de la polarización fija, monto y mido VCE, VC e IC.\n  Repito con la realimentación de emisor (RC, RB, RE).\n  Repito con la realimentación de colector.\n  Repito con el divisor de tensión (R1, R2, RC, RE).\n  Completo la tabla 5.1 teórica y experimental.\n  Prueba de estabilidad: cambio el transistor o lo caliento con los dedos y anoto la variación de IC.\n  Ordeno los montajes de más a menos estable y recojo el puesto."
+  },
+  {
+    "objectID": "P5_Transistor_II.html#errores-frecuentes-pulsa-cada-tarjeta",
+    "href": "P5_Transistor_II.html#errores-frecuentes-pulsa-cada-tarjeta",
+    "title": "",
+    "section": "Errores frecuentes Pulsa cada tarjeta",
+    "text": "Errores frecuentes Pulsa cada tarjeta\n\n  ✗Usar un valor de β distinto al de tu transistor.pulsa✓Mide hFE con el polímetro y úsalo en los cálculos teóricos.\n  ✗No normalizar las resistencias.pulsa✓Elige el valor comercial más próximo y recalcula el punto Q.\n  ✗Confundir VC con VCE.pulsa✓VCE = VC − VE. Sólo coinciden si no hay RE.\n  ✗Medir IC abriendo el circuito.pulsa✓Mide la tensión en RC y calcula IC = VRC/RC.\n  ✗Olvidar IB en la realimentación de colector.pulsa✓Por RC pasa IC + IB: RC = (VCC − VC)/(IC + IB).\n  ✗Resolver el divisor sin Thévenin cuando RE es importante.pulsa✓VBB = VCC·R2/(R1+R2), RBB = R1‖R2 y IB = (VBB − 0,7)/(RBB + (β+1)RE)."
+  },
+  {
+    "objectID": "P5_Transistor_II.html#dónde-importa-la-polarización",
+    "href": "P5_Transistor_II.html#dónde-importa-la-polarización",
+    "title": "",
+    "section": "¿Dónde importa la polarización?",
+    "text": "¿Dónde importa la polarización?\n\n  Micrófono del portátilpreamplificadorAmplifica milivoltios sin recortar: Q en el centro de la zona activa.\n  SensoresacondicionamientoUna señal pequeña se amplifica antes de llegar al convertidor A/D.\n  Dentro de una caja calientedivisor de tensiónJunto a un procesador la temperatura sube: hace falta la polarización más estable.\n  Fabricación en seriedispersión de βMiles de placas con transistores distintos deben funcionar igual sin ajustar nada.\n  Amplificadores de audioclase AQ centrado para la máxima excursión sin distorsión.\n  Radio y wifiRFEtapas amplificadoras de la antena polarizadas con realimentación.\n  Interruptorespolarización fijaEn conmutación basta la más sencilla (Práctica 4).\n  Espejos de corrientecircuitos integradosDentro de los chips se polariza con transistores emparejados."
+  },
+  {
+    "objectID": "P5_Transistor_II.html#así-es-el-examen",
+    "href": "P5_Transistor_II.html#así-es-el-examen",
+    "title": "",
+    "section": "Así es el examen",
+    "text": "Así es el examen\n\n\n\n\n\nApartado (laboratorio, familia “polarización”)\nPuntos\n\n\n\n\nMedidas del punto de trabajo\n5\n\n\nValores teóricos\n2,5\n\n\nComentario de los resultados\n1,5\n\n\nNombre del circuito\n1\n\n\n\n\n\n\nEn teoría y problemas Diseño de la polarización por divisor de tensión para un punto Q dado y estudio de la variación de IC si β cambia (por ejemplo, de 150 a 300)."
+  },
+  {
+    "objectID": "P5_Transistor_II.html#entrena-calcula-el-punto-de-trabajo-simulador",
+    "href": "P5_Transistor_II.html#entrena-calcula-el-punto-de-trabajo-simulador",
+    "title": "",
+    "section": "Entrena: calcula el punto de trabajo Simulador",
+    "text": "Entrena: calcula el punto de trabajo Simulador"
+  },
+  {
+    "objectID": "P5_Transistor_II.html#qué-has-aprendido-escanea-el-qr-resultados-en-directo",
+    "href": "P5_Transistor_II.html#qué-has-aprendido-escanea-el-qr-resultados-en-directo",
+    "title": "",
+    "section": "¿Qué has aprendido? Escanea el QR · resultados en directo",
+    "text": "¿Qué has aprendido? Escanea el QR · resultados en directo"
+  },
+  {
+    "objectID": "P5_Transistor_II.html#resumen",
+    "href": "P5_Transistor_II.html#resumen",
+    "title": "",
+    "section": "Resumen",
+    "text": "Resumen\n\n\n\n\n\n\n\nMontaje\nFórmulas de diseño (punto Q dado por VC e IC)\n\n\n\n\nFija\nRC = (VCC − VC)/IC · RB = (VCC − 0,7)/IB\n\n\nR. de emisor\nRE ≈ RC/4 · Vb = 0,7 + IE·RE · RB = (VCC − Vb)/IB\n\n\nR. de colector\nRC = (VCC − VC)/(IC + IB) · RB = (VC − 0,7)/IB\n\n\nDivisor\nVB = 0,7 + IC·RE · R2 = VB/(9·IB) · R1 = (VCC − VB)/(10·IB)\n\n\n\n\n\n1 Q debe estar en activa, centrado y ser estable.\n\n\n2 La realimentación (RE o RC hacia la base) compensa los cambios de β.\n\n\n3 El divisor de tensión es el estándar en amplificadores."
+  },
+  {
+    "objectID": "P5_Transistor_II.html#recursos-y-créditos",
+    "href": "P5_Transistor_II.html#recursos-y-créditos",
+    "title": "",
+    "section": "Recursos y créditos",
+    "text": "Recursos y créditos\n\n\nPara seguir practicando\n\nCuaderno de laboratorio y fundamento teórico de la Práctica 5 (Moodle).\nRepasa la recta de carga y las zonas en la presentación de la Práctica 4.\nSimuladores de circuitos: Falstad, LTspice o Multisim.\n\nFicha del recurso\nAutora: Cristina Martínez Ruedas (ORCID 0000-0003-0089-1133). Departamento de Ingeniería Electrónica y de Computadores, Universidad de Córdoba. Circuitos y Sistemas Electrónicos, 1.er curso del Grado en Ingeniería Informática, EPS de Córdoba. Versión 1.0, octubre de 2026.\n\n\n\nLicencia Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0). Todos los esquemas, gráficas y simuladores son de elaboración propia.\n\nVolver al inicio"
+  }
+]

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prácticas CSE · EPSC</title>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<style>
+  :root { --indigo:#280091; --azul:#445ba6; --azul2:#4c5cc5; --verde:#00b299; --teal:#009e91; --cian:#3fcfd5; --cian-claro:#9fe3e6; --linea:#dfe3f3; --suave:#f4f6fd; --tinta:#22223a; --gris:#6b6f86; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Source Sans 3", system-ui, sans-serif; color: var(--tinta); background: #fff; }
+  header { position: relative; overflow: hidden; padding: 28px 24px 24px; border-bottom: 3px solid var(--cian-claro); }
+  header .mos { position: absolute; right: -10px; top: -10px; width: min(420px, 45vw); }
+  header .logo { height: 70px; position: relative; }
+  .kicker { margin-top: 18px; font: 800 15px Archivo, sans-serif; color: var(--teal); letter-spacing: .08em; text-transform: uppercase; position: relative; }
+  h1 { margin: 6px 0 4px; font: 900 clamp(30px, 5vw, 54px)/1.05 Archivo, sans-serif; color: var(--azul); position: relative; }
+  .sub { color: var(--gris); font-size: 18px; position: relative; max-width: 760px; }
+  main { max-width: 1180px; margin: 0 auto; padding: 24px 16px 48px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; }
+  a.card { display: block; text-decoration: none; color: inherit; border: 1px solid var(--linea); border-top: 6px solid var(--cian); border-radius: 12px; padding: 18px 20px; background: #fff; box-shadow: 0 6px 20px rgba(40,0,145,.06); transition: transform .15s, box-shadow .15s; }
+  a.card:hover, a.card:focus-visible { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(40,0,145,.12); outline: none; border-top-color: var(--verde); }
+  .num { font: 900 15px Archivo; color: #fff; background: var(--azul2); border-radius: 6px; padding: 3px 9px; }
+  .card h2 { font: 800 23px Archivo; color: var(--indigo); margin: 12px 0 6px; }
+  .card p { margin: 0; color: var(--gris); font-size: 16px; line-height: 1.45; }
+  .tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font: 700 13px Archivo; background: var(--cian-claro); color: var(--indigo); border-radius: 4px; padding: 2px 8px; }
+  footer { border-top: 1px solid var(--linea); padding: 18px 24px; color: var(--gris); font-size: 14px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  footer img { height: 46px; }
+</style>
+</head>
+<body>
+<header>
+  <img class="mos" src="assets/img/mosaico-sup.png" alt="">
+  <img class="logo" src="assets/img/logo-epsc.png" alt="Escuela Politécnica Superior de Córdoba">
+  <div class="kicker">Circuitos y Sistemas Electrónicos · 1.<sup>er</sup> curso · Grado en Ingeniería Informática</div>
+  <h1>Presentaciones interactivas de las prácticas</h1>
+  <div class="sub">Simuladores, encuestas con QR y entrenamiento para el examen. Cristina Martínez Ruedas · Departamento de Ingeniería Electrónica y de Computadores · Curso 2026/2027</div>
+</header>
+<main>
+  <div class="grid">
+    <a class="card" href="P0_Manejo_de_equipos.html"><span class="num">P0</span><h2>Manejo de equipos</h2><p>Fuente, generador, polímetro y osciloscopio con equipos virtuales.</p><div class="tags"><span class="tag">lee la pantalla</span><span class="tag">protoboard</span><span class="tag">código de colores</span></div></a>
+    <a class="card" href="P1_Filtros_pasivos.html"><span class="num">P1</span><h2>Filtros pasivos</h2><p>Diferenciador e integrador RC, tiempo y frecuencia, diagrama de Bode.</p><div class="tags"><span class="tag">simulador de filtros</span><span class="tag">Bode</span><span class="tag">osciloscopio</span></div></a>
+    <a class="card" href="P2_Diodo.html"><span class="num">P2</span><h2>El diodo</h2><p>Unión PN, curva característica, modo XY y diodo Zener.</p><div class="tags"><span class="tag">curva V-I</span><span class="tag">regulador Zener</span><span class="tag">LED</span></div></a>
+    <a class="card" href="P3_Rectificadores.html"><span class="num">P3</span><h2>Rectificadores</h2><p>Media onda, onda completa, puente de Graetz y filtrado.</p><div class="tags"><span class="tag">fuente de alimentación</span><span class="tag">rizado</span><span class="tag">masas</span></div></a>
+    <a class="card" href="P4_Transistor_I.html"><span class="num">P4</span><h2>Transistor bipolar I</h2><p>Recta de carga, zonas de corte, activa y saturación, conmutación.</p><div class="tags"><span class="tag">punto Q</span><span class="tag">puertas lógicas</span><span class="tag">GPIO</span></div></a>
+    <a class="card" href="P5_Transistor_II.html"><span class="num">P5</span><h2>Transistor bipolar II</h2><p>Polarización: estabilidad frente a β y temperatura, y diseño.</p><div class="tags"><span class="tag">cuatro montajes</span><span class="tag">diseño</span><span class="tag">amplificar</span></div></a>
+    <a class="card" href="P6_Amplificador_operacional.html"><span class="num">P6</span><h2>Amplificador operacional</h2><p>Cortocircuito virtual, inversor, no inversor y seguidor con el LM741.</p><div class="tags"><span class="tag">configuraciones</span><span class="tag">ancho de banda</span><span class="tag">sensores</span></div></a>
+  </div>
+</main>
+<footer><img src="assets/img/logo-uco.png" alt="Universidad de Córdoba"><span>Escuela Politécnica Superior de Córdoba · Universidad de Córdoba · Licencia CC BY-NC-SA 4.0</span></footer>
+</body>
+</html>

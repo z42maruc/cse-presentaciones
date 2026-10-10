@@ -9,7 +9,7 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.42">
 
-  <title>P1 · Filtros pasivos · CSE</title>
+  <title>P5 · Transistor bipolar II · CSE</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -139,9 +139,9 @@
   <img class="logo-epsc" src="assets/img/logo-epsc.png" alt="Escuela Politécnica Superior de Córdoba">
   <img class="logo-dpto" src="assets/img/logo-departamento.png" alt="Departamento de Ingeniería Electrónica y de Computadores" onerror="this.remove()" style="position:absolute;left:480px;top:70px;height:100px">
   <img class="logo-uco" src="assets/img/logo-uco.png" alt="Universidad de Córdoba">
-  <div class="kicker">Práctica 1 · Circuitos y Sistemas Electrónicos</div>
-  <h1 class="tit" style="font-size:120px;line-height:1">Filtros pasivos</h1>
-  <div class="subt">Circuito diferenciador e integrador: tiempo y frecuencia, respuesta en frecuencia y diagrama de Bode</div>
+  <div class="kicker">Práctica 5 · Circuitos y Sistemas Electrónicos</div>
+  <h1 class="tit" style="font-size:104px;line-height:1">Transistor bipolar II</h1>
+  <div class="subt">Polarización: punto de trabajo, estabilidad frente a β y temperatura, y diseño de los cuatro montajes</div>
   <div class="autor"><b>Cristina Martínez Ruedas</b><br>Departamento de Ingeniería Electrónica y de Computadores<br>Grado en Ingeniería Informática · 1.<sup>er</sup> curso · Curso 2026/2027</div>
   <div class="start"><button class="btn big verde" data-goto="1,1">¡Empezamos! ▶</button></div>
 </div>
@@ -150,23 +150,23 @@
 <h2>Hoja de ruta</h2>
 <div class="cols c64">
 <div>
-<p><strong>¿Por qué le importa esto a un informático?</strong></p>
+<p><strong>Fijar el punto de trabajo es como calibrar un sensor</strong></p>
 <ul>
-<li>Toda señal (voz, música, wifi, bits por un cable) se puede describir por su <strong>forma en el tiempo</strong> o por las <strong>frecuencias</strong> que contiene.</li>
-<li>Los <strong>filtros</strong> deciden qué frecuencias pasan y cuáles no: sintonizar una emisora, limpiar audio, preparar señales para un convertidor A/D.</li>
-<li>Los cables y pistas de un ordenador se comportan como <strong>filtros RC</strong>: limitan la velocidad a la que viajan los bits.</li>
+<li>Para <strong>amplificar</strong> una señal (por ejemplo, la de un micrófono) el transistor debe estar en zona activa, en un punto <strong>estable</strong>.</li>
+<li>La <strong>β</strong> cambia de un transistor a otro y con la temperatura: un buen circuito de polarización debe “olvidarse” de ella.</li>
+<li>El <strong>divisor de tensión</strong> que verás es el circuito más utilizado en la práctica.</li>
 </ul>
 <div class="caja idea">
-<p><span class="t">Objetivos</span> Relacionar tiempo y frecuencia · estudiar el diferenciador (paso alto) y el integrador (paso bajo) · medir su respuesta en frecuencia y dibujar el <strong>diagrama de Bode</strong>.</p>
+<p><span class="t">Objetivos</span> Comprender la utilidad de los circuitos de <strong>polarización</strong> · conocer y comparar los cuatro métodos · <strong>calcular</strong> las resistencias para un punto de trabajo dado.</p>
 </div>
 </div>
 <div>
 <div class="cards" style="grid-template-columns:1fr">
-  <div class="card"><h4>1 · Encuesta inicial</h4>Escanea el QR y responde: ¿qué sabes ya?</div>
-  <div class="card"><h4>2 · Teoría con simuladores</h4>Tiempo y frecuencia, filtros RC, laboratorio de filtros y Bode.</div>
-  <div class="card"><h4>3 · Osciloscopio virtual</h4>Practica las medidas antes de tocar el equipo real.</div>
-  <div class="card"><h4>4 · Laboratorio y examen</h4>Procedimiento, errores típicos y enunciados reales.</div>
-  <div class="card"><h4>5 · Encuesta final</h4>Comparamos el antes y el después.</div>
+  <div class="card"><h4>1 · Encuesta inicial</h4>Escanea el QR: ¿qué sabes ya?</div>
+  <div class="card"><h4>2 · ¿Por qué importa Q?</h4>Amplificar sin recortar.</div>
+  <div class="card"><h4>3 · Los cuatro montajes</h4>Compáralos cambiando β y la temperatura.</div>
+  <div class="card"><h4>4 · Diseño</h4>Calcula las resistencias para tu punto Q.</div>
+  <div class="card"><h4>5 · Laboratorio, aplicaciones y examen</h4>Y encuesta final para comparar.</div>
 </div>
 </div>
 </div>
@@ -178,300 +178,234 @@
 </section>
 <section id="qué-sabes-ya-escanea-el-qr-resultados-en-directo" class="slide level2">
 <h2>¿Qué sabes ya? <span class="sub">Escanea el QR · resultados en directo</span></h2>
-<div class="poll-widget" data-p="P1" data-b="inicial"></div>
+<div class="poll-widget" data-p="P5" data-b="inicial"></div>
 </section></section>
 <section>
-<section id="tiempo-y-frecuencia" class="title-slide slide level1 seccion center" data-num="02" data-tab="Señales" data-desc="Una misma señal se puede mirar de dos formas: como la onda que dibuja el osciloscopio o como las barras de un ecualizador.">
-<h1>Tiempo y frecuencia</h1>
+<section id="el-punto-q" class="title-slide slide level1 seccion center" data-num="02" data-tab="El punto Q" data-desc="Repaso de las zonas de trabajo y por qué la posición del punto Q decide si un amplificador funciona o recorta la señal.">
+<h1>El punto Q</h1>
 
 </section>
-<section id="dos-formas-de-mirar-una-señal" class="slide level2">
-<h2>Dos formas de mirar una señal</h2>
+<section id="repaso-zonas-y-punto-de-trabajo" class="slide level2">
+<h2>Repaso: zonas y punto de trabajo</h2>
 <div class="cols c2">
 <div>
-<ul>
-<li><strong>Dominio del tiempo</strong>: cómo varía la tensión, v(t). Lo muestra el <strong>osciloscopio</strong>.</li>
-<li><strong>Dominio de la frecuencia</strong>: qué frecuencias contiene la señal y con qué amplitud. Lo muestra un <strong>analizador de espectros</strong> (o la función FFT del osciloscopio).</li>
-</ul>
-<div class="caja idea">
-<p><span class="t">La idea de Fourier</span> <strong>Cualquier señal periódica es una suma de senoidales</strong> (la fundamental y sus armónicos). Si sabemos cómo responde un circuito a <strong>una</strong> senoidal de cada frecuencia, sabemos cómo responde a <strong>cualquier</strong> señal.</p>
-</div>
-</div>
-<div>
 <table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
 <thead>
 <tr class="header">
-<th></th>
-<th><strong>Tiempo</strong></th>
-<th><strong>Frecuencia</strong></th>
+<th>Zona</th>
+<th>Condición</th>
+<th>Uso</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Eje horizontal</td>
-<td>t (s)</td>
-<td>f (Hz)</td>
+<td><strong>Corte</strong></td>
+<td>I<sub>B</sub> = 0 → I<sub>C</sub> ≈ 0, V<sub>CE</sub> ≈ V<sub>CC</sub></td>
+<td>Interruptor abierto</td>
 </tr>
 <tr class="even">
-<td>Qué se ve</td>
-<td>La forma de onda</td>
-<td>Las componentes</td>
+<td><strong>Activa</strong></td>
+<td>I<sub>C</sub> = β·I<sub>B</sub></td>
+<td><strong>Amplificador</strong></td>
 </tr>
 <tr class="odd">
-<td>Instrumento</td>
-<td>Osciloscopio</td>
-<td>Analizador, FFT</td>
-</tr>
-<tr class="even">
-<td>Senoidal pura</td>
-<td>Onda que se repite cada T</td>
-<td>Una raya en f = 1/T</td>
-</tr>
-<tr class="odd">
-<td>Un filtro…</td>
-<td>cambia la forma</td>
-<td>atenúa unas rayas</td>
+<td><strong>Saturación</strong></td>
+<td>V<sub>CE</sub> ≈ 0,2 V, I<sub>C</sub> = I<sub>C,sat</sub></td>
+<td>Interruptor cerrado</td>
 </tr>
 </tbody>
 </table>
+<p>Al variar I<sub>B</sub>, Q se desplaza por la <strong>recta de carga</strong>, que corta los ejes en (0; V<sub>CC</sub>/R<sub>C</sub>) y (V<sub>CC</sub>; 0). Fijar ese punto de origen se llama <strong>polarizar</strong>.</p>
+</div>
+<div>
+<div class="caja idea">
+<p><span class="t">Dos condiciones para Q</span> 1. <strong>Dentro de la zona activa</strong> y, para la máxima excursión sin deformación, cerca del <strong>centro</strong> de la recta (V<sub>CE</sub> ≈ V<sub>CC</sub>/2). 2. <strong>Estable</strong>: no debe moverse si cambias el transistor (otra β) o si sube la temperatura.</p>
+</div>
 </div>
 </div>
 </section>
-<section id="construye-una-onda-sumando-senoidales-simulador" class="slide level2">
-<h2>Construye una onda sumando senoidales <span class="sub">Simulador</span></h2>
-<div data-sim="fourier">
+<section id="por-qué-importa-el-punto-q-simulador" class="slide level2">
+<h2>¿Por qué importa el punto Q? <span class="sub">Simulador</span></h2>
+<div data-sim="amplificador-q">
 
-</div>
-<div class="small muted">
-<p>Sube el número de armónicos y observa cómo la suma se parece cada vez más a la onda ideal. Después activa el <strong>paso bajo</strong>: al quitar armónicos altos, la onda se “suaviza”. Eso es exactamente lo que harán tus filtros.</p>
-</div>
-</section>
-<section id="dónde-se-usan-las-frecuencias" class="slide level2">
-<h2>¿Dónde se usan las frecuencias?</h2>
-<div class="cards g4">
-  <div class="card"><h4>Radio y TV</h4><span class="tag">FM 88-108 MHz</span><span class="tag">TDT 470-694 MHz</span><p><b>Sintonizar es filtrar</b>: el receptor deja pasar sólo la banda de la emisora elegida.</p></div>
-  <div class="card"><h4>WiFi, Bluetooth, móvil</h4><span class="tag">2,4 GHz</span><span class="tag">5 GHz</span><p>Canales separados en frecuencia. Si dos redes vecinas usan el mismo canal, se interfieren.</p></div>
-  <div class="card"><h4>Audio</h4><span class="tag">20 Hz - 20 kHz</span><p>El MP3 elimina lo que no oímos; un ecualizador sube o baja bandas de frecuencia.</p></div>
-  <div class="card"><h4>Red eléctrica</h4><span class="tag">50 Hz</span><p>Aparece como "zumbido" en micrófonos y sensores, y se elimina con filtros.</p></div>
-</div>
-<div class="caja">
-<p><span class="t">Idea para llevarse</span> El osciloscopio te enseña la señal en el <strong>tiempo</strong>, pero un filtro se diseña y se entiende en <strong>frecuencia</strong>. En esta práctica medirás en el tiempo (amplitudes y retrasos) para construir una gráfica en frecuencia: el <strong>diagrama de Bode</strong>.</p>
 </div>
 </section></section>
 <section>
-<section id="filtros-rc" class="title-slide slide level1 seccion center" data-num="03" data-tab="Filtros RC" data-desc="Con sólo una resistencia y un condensador construimos dos filtros: el diferenciador (paso alto) y el integrador (paso bajo).">
-<h1>Filtros RC</h1>
+<section id="polarización" class="title-slide slide level1 seccion center" data-num="03" data-tab="Polarización" data-desc="En lugar de dos fuentes, una sola fuente y una red de resistencias. Cuatro montajes, de más sencillo a más estable.">
+<h1>Polarización</h1>
 
 </section>
-<section id="el-condensador-cambia-de-personalidad-simulador" class="slide level2">
-<h2>El condensador “cambia de personalidad” <span class="sub">Simulador</span></h2>
-<div data-sim="impedancia">
-
-</div>
-</section>
-<section id="diferenciador-e-integrador" class="slide level2">
-<h2>Diferenciador e integrador</h2>
+<section id="los-cuatro-montajes" class="slide level2">
+<h2>Los cuatro montajes</h2>
 <div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Diferenciador (paso alto)</a></li><li><a href="#tabset-1-2">Integrador (paso bajo)</a></li><li><a href="#tabset-1-3">Frecuencia de corte</a></li></ul>
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Fija</a></li><li><a href="#tabset-1-2">R. de emisor</a></li><li><a href="#tabset-1-3">R. de colector</a></li><li><a href="#tabset-1-4">Divisor de tensión</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
-<div class="cols c46">
-<div data-sim="montaje" data-tipo="hp">
-
+<div class="cols c2">
+<div>
+<p><span class="math display">\[R_B=\frac{V_{CC}-0{,}7}{I_B}\qquad R_C=\frac{V_{CC}-V_C}{I_C}\]</span></p>
+<p>R<sub>B</sub> resulta de valor elevado. El punto Q <strong>depende directamente de β</strong>.</p>
 </div>
-<div class="small">
-<p>Salida en la <strong>resistencia</strong>. Para una entrada senoidal:</p>
-<p><span class="math display">\[G=\frac{V_s}{V_e}=\frac{R}{R+\frac{1}{j\omega C}}=\frac{1}{1-j\,f_o/f}\]</span></p>
-<p><span class="math display">\[|G|=\frac{1}{\sqrt{1+(f_o/f)^2}}\qquad \theta=\operatorname{arctg}\frac{f_o}{f}\]</span></p>
-<p>En <span class="math inline">\(f=f_o\)</span>: <span class="math inline">\(|G|=0{,}707\)</span> (−3 dB) y <span class="math inline">\(\theta=+45^\circ\)</span> (la salida va <strong>adelantada</strong>).</p>
+<div>
+<div class="caja idea">
+<p><span class="t">Fortalezas</span> El más sencillo: dos resistencias y cálculo inmediato. Útil en <strong>conmutación</strong> (Práctica 4).</p>
+</div>
+<div class="caja error">
+<p><span class="t">Desventajas</span> Si β se duplica, I<sub>C</sub> se duplica · no compensa la temperatura · puede embalarse hacia saturación.</p>
+</div>
 </div>
 </div>
 </div>
 <div id="tabset-1-2">
-<div class="cols c46">
-<div data-sim="montaje" data-tipo="lp">
-
+<div class="cols c2">
+<div>
+<p><span class="math display">\[V_b=0{,}7+R_E\cdot I_E\qquad R_B=\frac{V_{CC}-V_b}{I_B}\qquad R_E\approx\frac{R_C}{4}\]</span></p>
+<p>Si I<sub>C</sub> tiende a subir, sube la tensión en R<sub>E</sub>, sube V<sub>b</sub> y baja I<sub>B</sub>: <strong>realimentación negativa</strong>.</p>
 </div>
-<div class="small">
-<p>Salida en el <strong>condensador</strong>:</p>
-<p><span class="math display">\[G=\frac{1}{1+j\omega RC}=\frac{1}{1+j\,f/f_o}\]</span></p>
-<p><span class="math display">\[|G|=\frac{1}{\sqrt{1+(f/f_o)^2}}\qquad \theta=-\operatorname{arctg}\frac{f}{f_o}\]</span></p>
-<p>En <span class="math inline">\(f=f_o\)</span>: <span class="math inline">\(|G|=0{,}707\)</span> (−3 dB) y <span class="math inline">\(\theta=-45^\circ\)</span> (la salida va <strong>retrasada</strong>).</p>
+<div>
+<div class="caja idea">
+<p><span class="t">Fortalezas</span> Una sola resistencia más · más estable que la fija · R<sub>B</sub> menor.</p>
+</div>
+<div class="caja error">
+<p><span class="t">Desventajas</span> Sólo mejora mucho si R<sub>E</sub> es grande, pero entonces baja V<sub>CE</sub> (riesgo de saturación) · sigue dependiendo de β.</p>
+</div>
 </div>
 </div>
 </div>
 <div id="tabset-1-3">
 <div class="cols c2">
 <div>
-<p>La <strong>frecuencia de corte</strong> es aquella en la que la salida vale <strong>0,707 veces</strong> la entrada:</p>
-<p><span class="math display">\[G=\frac{1}{\sqrt 2}=0{,}707 \;\Rightarrow\; G_{dB}=20\log_{10}(0{,}707)=-3\ \text{dB}\]</span></p>
-<div class="formula">
-<p><span class="math display">\[f_o=\frac{1}{2\pi RC}\]</span></p>
+<p><span class="math display">\[R_C=\frac{V_{CC}-V_C}{I_C+I_B}\qquad R_B=\frac{V_C-0{,}7}{I_B}\]</span></p>
+<p>R<sub>B</sub> toma la tensión del <strong>colector</strong>: si I<sub>C</sub> sube, baja V<sub>CE</sub>, baja la corriente por R<sub>B</sub> y baja I<sub>B</sub>.</p>
 </div>
-<p>Con <strong>R = 56 kΩ</strong> y <strong>C = 10 nF</strong>: <span class="math inline">\(f_o \approx\)</span> <strong>284 Hz</strong>.</p>
-</div>
+<div>
 <div class="caja idea">
-<p><span class="t">Truco para recordarlo</span> Si el condensador está <strong>en serie</strong> (entre entrada y salida), deja pasar las altas frecuencias: <strong>paso alto</strong>. Si está <strong>en paralelo con la salida</strong>, “cortocircuita” las altas frecuencias a masa: <strong>paso bajo</strong>.</p>
+<p><span class="t">Fortalezas</span> Dos resistencias · buena estabilidad · <strong>nunca satura</strong>: aunque R<sub>B</sub> = 0, V<sub>CE</sub> ≥ 0,7 V.</p>
+</div>
+<div class="caja error">
+<p><span class="t">Desventajas</span> Sigue dependiendo de β (menos) · la realimentación reduce también la ganancia.</p>
 </div>
 </div>
 </div>
 </div>
-</div>
-</section></section>
-<section>
-<section id="simulador-de-filtros" class="title-slide slide level1 seccion center" data-num="04" data-tab="Simulador" data-desc="Elige las señales que entran, ajusta R y C y comprueba qué componentes atraviesan el filtro. También puedes escucharlo.">
-<h1>Simulador de filtros</h1>
-
-</section>
-<section id="laboratorio-de-filtros-qué-pasa-y-qué-no-simulador" class="slide level2">
-<h2>Laboratorio de filtros: ¿qué pasa y qué no? <span class="sub">Simulador</span></h2>
-<div data-sim="filterlab">
-
-</div>
-</section>
-<section id="retos-para-la-clase" class="slide level2">
-<h2>Retos para la clase</h2>
+<div id="tabset-1-4">
 <div class="cols c2">
 <div>
-<p>En el simulador anterior, abre el desplegable <strong>Modo</strong> y resuelve los retos:</p>
-<ol type="1">
-<li><strong>Quita el pitido agudo</strong> (paso bajo).</li>
-<li><strong>Quita el zumbido de la red</strong> (paso alto).</li>
-<li><strong>¿Imposible?</strong> Piensa por qué no se puede.</li>
-<li><strong>Paso banda</strong>: aísla la nota La con dos filtros en cascada.</li>
-</ol>
-<p><span class="btn sec" data-goto="4,1">Ir al simulador ◀</span></p>
+<p><span class="math display">\[V_B=0{,}7+I_C R_E\quad R_2=\frac{V_B}{9I_B}\quad R_1=\frac{V_{CC}-V_B}{10I_B}\]</span></p>
+<p>Análisis exacto con el <strong>equivalente de Thévenin</strong>:</p>
+<p><span class="math display">\[I_B=\frac{V_{BB}-V_{BE}}{R_{BB}+(\beta+1)R_E}\]</span></p>
 </div>
-<div class="caja ojo">
-<p><span class="t">Para pensar</span> En el reto 3 no hay valores de R y C que funcionen. ¿Qué tendría que tener el filtro para conseguirlo? Pista: mira cuántos dB por década cae la curva lejos de la frecuencia de corte.</p>
+<div>
+<div class="caja idea">
+<p><span class="t">Fortalezas</span> Prácticamente <strong>independiente de β</strong> · la mejor estabilidad térmica · la <strong>más usada</strong>.</p>
+</div>
+<div class="caja error">
+<p><span class="t">Desventajas</span> Cuatro resistencias y más cálculo · el divisor consume corriente siempre · R<sub>E</sub> reduce la ganancia.</p>
 </div>
 </div>
-</section></section>
-<section>
-<section id="diagrama-de-bode" class="title-slide slide level1 seccion center" data-num="05" data-tab="Bode" data-desc="La forma estándar de representar la respuesta en frecuencia: módulo en decibelios y fase, frente a la frecuencia en escala logarítmica.">
-<h1>Diagrama de Bode</h1>
-
-</section>
-<section id="por-qué-un-eje-logarítmico-juego" class="slide level2">
-<h2>¿Por qué un eje logarítmico? <span class="sub">Juego</span></h2>
-<div data-sim="logjuego">
-
 </div>
-<div class="cols c2 small">
-<ul>
-<li>Cada <strong>década</strong> (×10) ocupa el <strong>mismo espacio</strong>. No existe el 0 Hz.</li>
-<li>Entre 100 y 1000: el 200 está al 30 %, el 300 al 48 % y el 500 al 70 % de la década.</li>
-</ul>
+</div>
+</div>
 </div>
 </section>
-<section id="por-qué-decibelios-calculadora" class="slide level2">
-<h2>¿Por qué decibelios? <span class="sub">Calculadora</span></h2>
-<div class="cols c64">
-<div data-sim="db">
+<section id="compara-los-cuatro-montajes-cambia-β-y-la-temperatura-simulador" class="slide level2">
+<h2>Compara los cuatro montajes: cambia β y la temperatura <span class="sub">Simulador</span></h2>
+<div data-sim="polarizacion">
 
 </div>
-<div class="small">
-<p><span class="math display">\[G_{dB}=20\log_{10}\frac{V_s}{V_e}\]</span></p>
-<table class="caption-top">
+</section>
+<section id="la-comparación-en-una-tabla" class="slide level2">
+<h2>La comparación, en una tabla</h2>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>G (veces)</th>
-<th>G (dB)</th>
-<th>Significa</th>
+<th>Montaje</th>
+<th>Resistencias</th>
+<th>I<sub>C</sub> depende de β</th>
+<th>Si β se duplica, I<sub>C</sub>…</th>
+<th>Estabilidad térmica</th>
+<th>¿Puede saturar?</th>
+<th>Uso típico</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>1</td>
-<td>0 dB</td>
-<td>Pasa sin atenuarse</td>
+<td><strong>Fija</strong></td>
+<td>R<sub>B</sub>, R<sub>C</sub></td>
+<td>Totalmente</td>
+<td>+100 % (satura)</td>
+<td>Mala</td>
+<td>Sí</td>
+<td>Conmutación</td>
 </tr>
 <tr class="even">
-<td>0,707</td>
-<td>−3 dB</td>
-<td>Frecuencia de corte</td>
+<td><strong>R. de emisor</strong></td>
+<td>R<sub>B</sub>, R<sub>C</sub>, R<sub>E</sub></td>
+<td>Parcialmente</td>
+<td>+74 %</td>
+<td>Regular</td>
+<td>Sí, si R<sub>E</sub> es grande</td>
+<td>Amplificadores sencillos</td>
 </tr>
 <tr class="odd">
-<td>0,5</td>
-<td>−6 dB</td>
-<td>Amplitud a la mitad</td>
+<td><strong>R. de colector</strong></td>
+<td>R<sub>B</sub>, R<sub>C</sub></td>
+<td>Parcialmente</td>
+<td>+30 %</td>
+<td>Buena</td>
+<td><strong>No</strong></td>
+<td>Etapas sencillas y robustas</td>
 </tr>
 <tr class="even">
-<td>0,1</td>
-<td>−20 dB</td>
-<td>Dividida por 10</td>
-</tr>
-<tr class="odd">
-<td>0,01</td>
-<td>−40 dB</td>
-<td>Dividida por 100</td>
+<td><strong>Divisor</strong></td>
+<td>R<sub>1</sub>, R<sub>2</sub>, R<sub>C</sub>, R<sub>E</sub></td>
+<td><strong>Casi nada</strong></td>
+<td>+6 %</td>
+<td>Muy buena</td>
+<td>Sólo por mal diseño</td>
+<td><strong>Amplificadores</strong></td>
 </tr>
 </tbody>
 </table>
-<div class="caja ojo">
-<p>Para tensiones, siempre <strong>20·log</strong>, nunca 10·log.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="bode-interactivo-y-tus-medidas-simulador" class="slide level2">
-<h2>Bode interactivo y tus medidas <span class="sub">Simulador</span></h2>
-<div data-sim="bode">
-
-</div>
-</section>
-<section id="cómo-construir-tu-bode-experimental" class="slide level2">
-<h2>Cómo construir tu Bode experimental</h2>
-<div class="cols c2">
-<div>
-<ol type="1">
-<li>Para cada frecuencia calcula <span class="math inline">\(G=V_s/V_e\)</span>, <span class="math inline">\(G_{dB}=20\log G\)</span> y <span class="math inline">\(\varphi=360^\circ\cdot\Delta t/T\)</span>.</li>
-<li>Escribe las décadas (10, 100, 1 k, 10 k) bajo el eje del papel semilogarítmico.</li>
-<li>Sitúa cada punto en su frecuencia (<strong>no</strong> a distancias iguales).</li>
-<li>Une los puntos con una <strong>curva suave</strong>.</li>
-<li>Busca la <span class="math inline">\(f_o\)</span> experimental: <strong>3 dB por debajo de la zona plana</strong>. Compruébala con la fase (±45°).</li>
-<li>Elige frecuencias repartidas en décadas: 30, 90, 150, <span class="math inline">\(f_o\)</span>, 600, 1500 y 3000 Hz.</li>
-</ol>
-</div>
-<div>
-<div class="cards g2">
-  <div class="flip"><div class="inner"><div class="front"><b class="x">✗ Error</b>Dibujar con eje de frecuencias lineal o repartir los puntos a distancias iguales.<span class="hint">pulsa para girar</span></div><div class="back"><b class="v">✓ Así sí</b>Papel semilogarítmico: cada punto en su posición logarítmica.</div></div></div>
-  <div class="flip"><div class="inner"><div class="front"><b class="x">✗ Error</b>Poner en el eje vertical G (veces) en lugar de G en dB.<span class="hint">pulsa para girar</span></div><div class="back"><b class="v">✓ Así sí</b>El módulo del Bode va en decibelios: 20·log|G|.</div></div></div>
-  <div class="flip"><div class="inner"><div class="front"><b class="x">✗ Error</b>Buscar la f<sub>o</sub> en −3 dB cuando la zona plana no está en 0 dB.<span class="hint">pulsa para girar</span></div><div class="back"><b class="v">✓ Así sí</b>La referencia es siempre la zona plana: f<sub>o</sub> está 3 dB por debajo de ella.</div></div></div>
-  <div class="flip"><div class="inner"><div class="front"><b class="x">✗ Error</b>Olvidar el signo de la fase o darla en radianes sin indicarlo.<span class="hint">pulsa para girar</span></div><div class="back"><b class="v">✓ Así sí</b>Integrador: fase negativa (retraso). Diferenciador: positiva (adelanto). En grados.</div></div></div>
-</div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="osciloscopio" class="title-slide slide level1 seccion center" data-num="06" data-tab="Osciloscopio" data-desc="Practica con un osciloscopio virtual: escalas, AUTOSET, cursores y medida del desfase, con onda senoidal y cuadrada.">
-<h1>Osciloscopio</h1>
-
-</section>
-<section id="osciloscopio-virtual-simulador" class="slide level2">
-<h2>Osciloscopio virtual <span class="sub">Simulador</span></h2>
-<div data-sim="scope">
-
-</div>
-</section>
-<section id="qué-verás-en-el-osciloscopio" class="slide level2">
-<h2>¿Qué verás en el osciloscopio?</h2>
-<div class="cols c2">
-<div>
-<p>A la frecuencia de corte, con 1 V de amplitud en la entrada, la salida tiene unos <strong>0,707 V</strong> y está desfasada unos <strong>45°</strong>. El desfase se mide como un retraso (o adelanto) Δt entre las dos señales:</p>
-<div class="formula">
-<p><span class="math display">\[\varphi = 360^\circ\cdot\frac{\Delta t}{T}\]</span></p>
-</div>
-<p>Ejemplo: T = 3,52 ms y Δt = 0,43 ms ⇒ φ ≈ 44°.</p>
-</div>
 <div class="caja idea">
-<p><span class="t">¿Por qué “diferenciador” e “integrador”?</span> Si f ≪ f<sub>o</sub>, la salida del paso alto es casi la <strong>derivada</strong> de la entrada: <span class="math inline">\(V_s \approx RC\,\frac{dV_e}{dt}\)</span>. Si f ≫ f<sub>o</sub>, la salida del paso bajo es casi la <strong>integral</strong>: <span class="math inline">\(V_s \approx \frac{1}{RC}\int V_e\,dt\)</span>.</p>
-<p>Pruébalo en el osciloscopio virtual: <strong>onda cuadrada</strong>, diferenciador a <strong>fo/10</strong> (picos) e integrador a <strong>10·fo</strong> (triangular).</p>
+<p><span class="t">Conclusión</span> Cuanto más <strong>realimentado</strong> está el circuito, menos depende Q de β y de la temperatura. El precio: más componentes y algo menos de ganancia.</p>
+</div>
+</section></section>
+<section>
+<section id="diseño" class="title-slide slide level1 seccion center" data-num="04" data-tab="Diseño" data-desc="Del punto de trabajo que quieres a las resistencias que tienes que montar, normalizadas a valores comerciales.">
+<h1>Diseño</h1>
+
+</section>
+<section id="diseña-la-polarización-para-tu-punto-q-calculadora" class="slide level2">
+<h2>Diseña la polarización para tu punto Q <span class="sub">Calculadora</span></h2>
+<div data-sim="diseno-pol">
+
+</div>
+<div class="cols c2 small">
+<div class="caja ojo">
+<p><span class="t">No olvides normalizar</span> Elige el valor <strong>comercial</strong> más próximo y <strong>recalcula</strong> el punto Q con él.</p>
+</div>
+<div class="caja ojo">
+<p><span class="t">V<sub>C</sub> no es V<sub>CE</sub></span> V<sub>C</sub> se mide del colector a masa; V<sub>CE</sub>, del colector al emisor. Sólo coinciden si R<sub>E</sub> = 0.</p>
 </div>
 </div>
 </section></section>
 <section>
-<section id="en-el-laboratorio" class="title-slide slide level1 seccion center" data-num="07" data-tab="Laboratorio" data-desc="Material, procedimiento paso a paso, teórico frente a experimental y los errores más frecuentes.">
+<section id="en-el-laboratorio" class="title-slide slide level1 seccion center" data-num="05" data-tab="Laboratorio" data-desc="Material, procedimiento paso a paso, la prueba de estabilidad y los errores más frecuentes.">
 <h1>En el laboratorio</h1>
 
 </section>
@@ -488,247 +422,166 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td>Osciloscopio</td>
-<td>R = 56 kΩ, ½ W</td>
+<td>Fuente de alimentación</td>
+<td>BD137 (β = 145)</td>
 </tr>
 <tr class="even">
-<td>Generador de funciones</td>
-<td>C = 0,01 µF (10 nF)</td>
+<td>Polímetro</td>
+<td>18 kΩ, 180 kΩ, 100 kΩ, 220 kΩ, 4,7 kΩ</td>
 </tr>
 <tr class="odd">
-<td>Polímetro</td>
-<td>Protoboard y cables</td>
+<td></td>
+<td>820 Ω y 220 Ω (½ W)</td>
 </tr>
 </tbody>
 </table>
 <div class="caja ojo">
-<p><span class="t">Antes de entrar</span> Calcula <span class="math inline">\(f_o\)</span>, la amplitud esperada a la salida en <span class="math inline">\(f_o\)</span> y una base de tiempos que muestre 2 periodos de 284 Hz.</p>
+<p><span class="t">Punto de trabajo de la práctica</span> <strong>V<sub>C</sub> = 7 V</strong>, <strong>I<sub>C</sub> = 9,75 mA</strong>, V<sub>CC</sub> = 15 V, β = 145. Calcula antes R<sub>C</sub> e I<sub>B</sub>.</p>
 </div>
 </div>
 <div>
 <div class="progreso"><div></div></div>
 <ul class="check">
-  <li>Mido R y C con el polímetro y calculo f<sub>o</sub> teórica.</li>
-  <li>Monto el <b>diferenciador</b> y conecto CH1 a la entrada y CH2 a la salida, con las masas en el mismo punto.</li>
-  <li>Senoidal de 1 V de amplitud a f<sub>o</sub>: dibujo Ve y Vs (2 periodos) anotando V/div y s/div.</li>
-  <li>Mido Ve, Vs y Δt en 7 frecuencias (3 por debajo, f<sub>o</sub>, 3 por encima). <b>Vuelvo a medir Ve</b> en cada una.</li>
-  <li>Dibujo el Bode (módulo y fase) y obtengo f<sub>o</sub> experimental y el error.</li>
-  <li>Repito todo con el <b>integrador</b>.</li>
-  <li>Onda cuadrada: diferenciador a 30 Hz e integrador a 3 kHz.</li>
-  <li>Apago los equipos, desmonto y recojo cables y sondas.</li>
+  <li>Mido la β de mi transistor con el zócalo h<sub>FE</sub> del polímetro.</li>
+  <li>Calculo R<sub>C</sub> y R<sub>B</sub> de la polarización fija, monto y mido V<sub>CE</sub>, V<sub>C</sub> e I<sub>C</sub>.</li>
+  <li>Repito con la realimentación de emisor (R<sub>C</sub>, R<sub>B</sub>, R<sub>E</sub>).</li>
+  <li>Repito con la realimentación de colector.</li>
+  <li>Repito con el divisor de tensión (R<sub>1</sub>, R<sub>2</sub>, R<sub>C</sub>, R<sub>E</sub>).</li>
+  <li>Completo la tabla 5.1 teórica y experimental.</li>
+  <li>Prueba de estabilidad: cambio el transistor o lo caliento con los dedos y anoto la variación de I<sub>C</sub>.</li>
+  <li>Ordeno los montajes de más a menos estable y recojo el puesto.</li>
 </ul>
 </div>
-</div>
-</section>
-<section id="teórico-frente-a-experimental-no-los-mezcles" class="slide level2">
-<h2>Teórico frente a experimental: no los mezcles</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Magnitud</th>
-<th><strong>Teórica</strong> (se CALCULA)</th>
-<th><strong>Experimental</strong> (se MIDE)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Datos de partida</td>
-<td>R y C nominales y la frecuencia f</td>
-<td>Ve, Vs, Δt y T leídos en el osciloscopio</td>
-</tr>
-<tr class="even">
-<td>Frecuencia de corte</td>
-<td><span class="math inline">\(f_o = 1/(2\pi RC)\)</span></td>
-<td>f a la que Vs = 0,707·Ve (o φ = ±45°), girando el mando del generador</td>
-</tr>
-<tr class="odd">
-<td>Ganancia</td>
-<td><span class="math inline">\(\lvert G\rvert = 1/\sqrt{1+(f/f_o)^2}\)</span> (integrador)</td>
-<td>G = Vs/Ve (cociente de dos medidas)</td>
-</tr>
-<tr class="even">
-<td>Ganancia en dB</td>
-<td>20·log|G| con el |G| teórico</td>
-<td>20·log(Vs/Ve) con las medidas</td>
-</tr>
-<tr class="odd">
-<td>Fase</td>
-<td>−arctg(f/f<sub>o</sub>) o +arctg(f<sub>o</sub>/f)</td>
-<td>φ = 360°·Δt/T</td>
-</tr>
-<tr class="even">
-<td>¿Interviene R o C?</td>
-<td>Sí, siempre</td>
-<td><strong>No</strong>: sólo tensiones y tiempos</td>
-</tr>
-</tbody>
-</table>
-<div class="caja idea">
-<p><span class="t">¿Cuánto error es normal?</span> Con tolerancias de ±5 % (R) y ±10 % (C), la f<sub>o</sub> real puede estar entre <strong>246 y 332 Hz</strong>. Un error del 5 % es perfectamente razonable. Comenta siempre el error y su causa.</p>
 </div>
 </section>
 <section id="errores-frecuentes-pulsa-cada-tarjeta" class="slide level2">
 <h2>Errores frecuentes <span class="sub">Pulsa cada tarjeta</span></h2>
 <div class="cards g3">
-  <div class="flip"><div class="inner"><div class="front"><b class="x">✗</b>Rellenar la columna experimental con f<sub>o</sub> = 1/(2πRC).<span class="hint">pulsa</span></div><div class="back"><b class="v">✓</b>Eso es teórico. La f<sub>o</sub> experimental se busca midiendo.</div></div></div>
-  <div class="flip"><div class="inner"><div class="front"><b class="x">✗</b>Calcular la G experimental con la fórmula del módulo.<span class="hint">pulsa</span></div><div class="back"><b class="v">✓</b>La G experimental es sólo Vs/Ve.</div></div></div>
-  <div class="flip"><div class="inner"><div class="front"><b class="x">✗</b>Usar Vpp en la entrada y Vp en la salida.<span class="hint">pulsa</span></div><div class="back"><b class="v">✓</b>Usa la misma magnitud en las dos o el cociente saldrá el doble o la mitad.</div></div></div>
-  <div class="flip"><div class="inner"><div class="front"><b class="x">✗</b>Medir con las dos sondas sin tener las masas en el mismo punto.<span class="hint">pulsa</span></div><div class="back"><b class="v">✓</b>Las masas del osciloscopio están unidas entre sí: conéctalas siempre al mismo nodo.</div></div></div>
-  <div class="flip"><div class="inner"><div class="front"><b class="x">✗</b>No volver a medir Ve al cambiar la frecuencia.<span class="hint">pulsa</span></div><div class="back"><b class="v">✓</b>El generador cambia ligeramente su amplitud con la frecuencia: mide Ve en cada punto.</div></div></div>
-  <div class="flip"><div class="inner"><div class="front"><b class="x">✗</b>Dar un error sin comentarlo.<span class="hint">pulsa</span></div><div class="back"><b class="v">✓</b>Di siempre si es razonable y por qué (tolerancias, lectura, instrumentos).</div></div></div>
+  <div class="flip"><div class="inner"><div class="front"><b class="x">✗</b>Usar un valor de β distinto al de tu transistor.<span class="hint">pulsa</span></div><div class="back"><b class="v">✓</b>Mide h<sub>FE</sub> con el polímetro y úsalo en los cálculos teóricos.</div></div></div>
+  <div class="flip"><div class="inner"><div class="front"><b class="x">✗</b>No normalizar las resistencias.<span class="hint">pulsa</span></div><div class="back"><b class="v">✓</b>Elige el valor comercial más próximo y recalcula el punto Q.</div></div></div>
+  <div class="flip"><div class="inner"><div class="front"><b class="x">✗</b>Confundir V<sub>C</sub> con V<sub>CE</sub>.<span class="hint">pulsa</span></div><div class="back"><b class="v">✓</b>V<sub>CE</sub> = V<sub>C</sub> − V<sub>E</sub>. Sólo coinciden si no hay R<sub>E</sub>.</div></div></div>
+  <div class="flip"><div class="inner"><div class="front"><b class="x">✗</b>Medir I<sub>C</sub> abriendo el circuito.<span class="hint">pulsa</span></div><div class="back"><b class="v">✓</b>Mide la tensión en R<sub>C</sub> y calcula I<sub>C</sub> = V<sub>RC</sub>/R<sub>C</sub>.</div></div></div>
+  <div class="flip"><div class="inner"><div class="front"><b class="x">✗</b>Olvidar I<sub>B</sub> en la realimentación de colector.<span class="hint">pulsa</span></div><div class="back"><b class="v">✓</b>Por R<sub>C</sub> pasa I<sub>C</sub> + I<sub>B</sub>: R<sub>C</sub> = (V<sub>CC</sub> − V<sub>C</sub>)/(I<sub>C</sub> + I<sub>B</sub>).</div></div></div>
+  <div class="flip"><div class="inner"><div class="front"><b class="x">✗</b>Resolver el divisor sin Thévenin cuando R<sub>E</sub> es importante.<span class="hint">pulsa</span></div><div class="back"><b class="v">✓</b>V<sub>BB</sub> = V<sub>CC</sub>·R<sub>2</sub>/(R<sub>1</sub>+R<sub>2</sub>), R<sub>BB</sub> = R<sub>1</sub>‖R<sub>2</sub> y I<sub>B</sub> = (V<sub>BB</sub> − 0,7)/(R<sub>BB</sub> + (β+1)R<sub>E</sub>).</div></div></div>
 </div>
 </section></section>
 <section>
-<section id="aplicaciones" class="title-slide slide level1 seccion center" data-num="08" data-tab="Aplicaciones" data-desc="Los filtros RC están en todos los ordenadores, móviles y placas de prototipos. Algunos ejemplos cercanos a la informática.">
+<section id="aplicaciones" class="title-slide slide level1 seccion center" data-num="06" data-tab="Aplicaciones" data-desc="Dónde importa que el punto de trabajo no se mueva: amplificadores, sensores y circuitos que se calientan.">
 <h1>Aplicaciones</h1>
 
 </section>
-<section id="dónde-hay-un-filtro-rc" class="slide level2">
-<h2>¿Dónde hay un filtro RC?</h2>
+<section id="dónde-importa-la-polarización" class="slide level2">
+<h2>¿Dónde importa la polarización?</h2>
 <div class="cards g4">
-  <div class="card"><h4>Filtro de cruce de altavoces</h4><span class="tag">paso bajo + alto</span><span class="tag">2-3 kHz</span><p>Graves al woofer, agudos al tweeter.</p></div>
-  <div class="card"><h4>Acoplamiento AC</h4><span class="tag">paso alto</span><span class="tag">≈ 10 Hz</span><p>El botón AC del osciloscopio es ¡un diferenciador RC! Quita la continua.</p></div>
-  <div class="card"><h4>Antialiasing (tarjeta de sonido)</h4><span class="tag">paso bajo</span><span class="tag">≈ 20 kHz</span><p>Quita lo que el convertidor A/D no puede muestrear.</p></div>
-  <div class="card"><h4>Antirrebote de un pulsador</h4><span class="tag">paso bajo</span><span class="tag">τ ≈ 10 ms</span><p>R = 10 kΩ, C = 1 µF: una pulsación no se lee como varias.</p></div>
-  <div class="card"><h4>PWM de Arduino → analógico</h4><span class="tag">paso bajo</span><p>Convierte los pulsos en una tensión casi continua. Pruébalo en la siguiente diapositiva.</p></div>
-  <div class="card"><h4>Condensadores de desacoplo</h4><span class="tag">paso bajo</span><span class="tag">MHz</span><p>Limpian la alimentación de procesadores y memorias.</p></div>
-  <div class="card"><h4>Microfiltro ADSL</h4><span class="tag">paso bajo</span><span class="tag">≈ 4 kHz</span><p>Separa la voz del teléfono de los datos por el mismo cable.</p></div>
-  <div class="card"><h4>Pistas de una placa base</h4><span class="tag">RC parásito</span><p>Redondean los flancos de los bits y limitan la velocidad máxima.</p></div>
-</div>
-</section>
-<section id="del-pwm-a-una-tensión-analógica-simulador" class="slide level2">
-<h2>Del PWM a una tensión analógica <span class="sub">Simulador</span></h2>
-<div data-sim="pwm">
-
+  <div class="card"><h4>Micrófono del portátil</h4><span class="tag">preamplificador</span><p>Amplifica milivoltios sin recortar: Q en el centro de la zona activa.</p></div>
+  <div class="card"><h4>Sensores</h4><span class="tag">acondicionamiento</span><p>Una señal pequeña se amplifica antes de llegar al convertidor A/D.</p></div>
+  <div class="card"><h4>Dentro de una caja caliente</h4><span class="tag">divisor de tensión</span><p>Junto a un procesador la temperatura sube: hace falta la polarización más estable.</p></div>
+  <div class="card"><h4>Fabricación en serie</h4><span class="tag">dispersión de β</span><p>Miles de placas con transistores distintos deben funcionar igual sin ajustar nada.</p></div>
+  <div class="card"><h4>Amplificadores de audio</h4><span class="tag">clase A</span><p>Q centrado para la máxima excursión sin distorsión.</p></div>
+  <div class="card"><h4>Radio y wifi</h4><span class="tag">RF</span><p>Etapas amplificadoras de la antena polarizadas con realimentación.</p></div>
+  <div class="card"><h4>Interruptores</h4><span class="tag">polarización fija</span><p>En conmutación basta la más sencilla (Práctica 4).</p></div>
+  <div class="card"><h4>Espejos de corriente</h4><span class="tag">circuitos integrados</span><p>Dentro de los chips se polariza con transistores emparejados.</p></div>
 </div>
 </section></section>
 <section>
-<section id="examen" class="title-slide slide level1 seccion center" data-num="09" data-tab="Examen" data-desc="El filtro RC aparece en todas las convocatorias desde 2021. Así es el examen y así puedes entrenarlo con los enunciados reales.">
+<section id="examen" class="title-slide slide level1 seccion center" data-num="07" data-tab="Examen" data-desc="La polarización aparece en el examen de laboratorio (medir el punto de trabajo) y en los problemas de teoría (diseño por divisor de tensión).">
 <h1>Examen</h1>
 
 </section>
-<section id="así-es-el-examen-de-laboratorio" class="slide level2">
-<h2>Así es el examen de laboratorio</h2>
-<div class="cols c46">
+<section id="así-es-el-examen" class="slide level2">
+<h2>Así es el examen</h2>
+<div class="cols c2">
 <div>
 <table class="caption-top">
 <thead>
 <tr class="header">
-<th>Apartado</th>
+<th>Apartado (laboratorio, familia “polarización”)</th>
 <th>Puntos</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Identificar el circuito y sus características</td>
+<td>Medidas del punto de trabajo</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Valores teóricos</td>
+<td>2,5</td>
+</tr>
+<tr class="odd">
+<td>Comentario de los resultados</td>
+<td>1,5</td>
+</tr>
+<tr class="even">
+<td>Nombre del circuito</td>
 <td>1</td>
-</tr>
-<tr class="even">
-<td>f<sub>c</sub>, ganancia y fase teóricas en f<sub>c</sub></td>
-<td>1,5</td>
-</tr>
-<tr class="odd">
-<td>Representar Ve y Vs a la frecuencia de corte</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>Tabla de 6 a 8 medidas (f, Ve, Vs, G, dB, fase)</td>
-<td>4</td>
-</tr>
-<tr class="odd">
-<td>Diagrama de Bode (módulo y fase)</td>
-<td>1,5</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div>
 <div class="caja idea">
-<p><span class="t">Lo que más puntúa</span> La <strong>tabla de medidas</strong> (4 puntos) y la <strong>representación</strong> con escalas (2 puntos). Practica con el osciloscopio virtual cómo elegir V/div y s/div.</p>
-</div>
-<div class="caja ojo">
-<p><span class="t">Atención a las unidades</span> Desde 2022 la amplitud suele darse en <strong>Vpp</strong>. Si Ve está en Vpp, Vs también.</p>
+<p><span class="t">En teoría y problemas</span> Diseño de la polarización por <strong>divisor de tensión</strong> para un punto Q dado y estudio de la variación de I<sub>C</sub> si β cambia (por ejemplo, de 150 a 300).</p>
 </div>
 </div>
 </div>
 </section>
-<section id="entrena-con-enunciados-reales-2021-2026-simulador" class="slide level2">
-<h2>Entrena con enunciados reales (2021-2026) <span class="sub">Simulador</span></h2>
-<div data-sim="examen">
+<section id="entrena-calcula-el-punto-de-trabajo-simulador" class="slide level2">
+<h2>Entrena: calcula el punto de trabajo <span class="sub">Simulador</span></h2>
+<div data-sim="examen-p5">
 
 </div>
 </section></section>
 <section>
-<section id="cierre" class="title-slide slide level1 seccion center" data-num="10" data-tab="Cierre" data-desc="Encuesta final, resumen de la práctica y recursos para seguir practicando.">
+<section id="cierre" class="title-slide slide level1 seccion center" data-num="08" data-tab="Cierre" data-desc="Encuesta final, resumen de la práctica y recursos para seguir practicando.">
 <h1>Cierre</h1>
 
 </section>
 <section id="qué-has-aprendido-escanea-el-qr-resultados-en-directo" class="slide level2">
 <h2>¿Qué has aprendido? <span class="sub">Escanea el QR · resultados en directo</span></h2>
-<div class="poll-widget" data-p="P1" data-b="final"></div>
+<div class="poll-widget" data-p="P5" data-b="final"></div>
 </section>
 <section id="resumen" class="slide level2">
 <h2>Resumen</h2>
 <table class="caption-top">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
-<th></th>
-<th><strong>Diferenciador</strong></th>
-<th><strong>Integrador</strong></th>
+<th>Montaje</th>
+<th>Fórmulas de diseño (punto Q dado por V<sub>C</sub> e I<sub>C</sub>)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Tipo de filtro</td>
-<td>Paso alto</td>
-<td>Paso bajo</td>
+<td><strong>Fija</strong></td>
+<td>R<sub>C</sub> = (V<sub>CC</sub> − V<sub>C</sub>)/I<sub>C</sub> · R<sub>B</sub> = (V<sub>CC</sub> − 0,7)/I<sub>B</sub></td>
 </tr>
 <tr class="even">
-<td>Salida en…</td>
-<td>la resistencia</td>
-<td>el condensador</td>
+<td><strong>R. de emisor</strong></td>
+<td>R<sub>E</sub> ≈ R<sub>C</sub>/4 · V<sub>b</sub> = 0,7 + I<sub>E</sub>·R<sub>E</sub> · R<sub>B</sub> = (V<sub>CC</sub> − V<sub>b</sub>)/I<sub>B</sub></td>
 </tr>
 <tr class="odd">
-<td>Ganancia</td>
-<td>1/(1 − j·f<sub>o</sub>/f)</td>
-<td>1/(1 + j·f/f<sub>o</sub>)</td>
+<td><strong>R. de colector</strong></td>
+<td>R<sub>C</sub> = (V<sub>CC</sub> − V<sub>C</sub>)/(I<sub>C</sub> + I<sub>B</sub>) · R<sub>B</sub> = (V<sub>C</sub> − 0,7)/I<sub>B</sub></td>
 </tr>
 <tr class="even">
-<td>En f = f<sub>o</sub></td>
-<td>0,707 (−3 dB), <strong>+45°</strong></td>
-<td>0,707 (−3 dB), <strong>−45°</strong></td>
-</tr>
-<tr class="odd">
-<td>Pendiente lejos de f<sub>o</sub></td>
-<td>+20 dB/década (por debajo)</td>
-<td>−20 dB/década (por encima)</td>
-</tr>
-<tr class="even">
-<td>Con R = 56 kΩ, C = 10 nF</td>
-<td>f<sub>o</sub> ≈ 284 Hz</td>
-<td>f<sub>o</sub> ≈ 284 Hz</td>
+<td><strong>Divisor</strong></td>
+<td>V<sub>B</sub> = 0,7 + I<sub>C</sub>·R<sub>E</sub> · R<sub>2</sub> = V<sub>B</sub>/(9·I<sub>B</sub>) · R<sub>1</sub> = (V<sub>CC</sub> − V<sub>B</sub>)/(10·I<sub>B</sub>)</td>
 </tr>
 </tbody>
 </table>
 <div class="cols c3 small">
 <div class="caja idea">
-<p><span class="t">1</span> Un filtro se entiende en <strong>frecuencia</strong>, pero se mide en el <strong>tiempo</strong>.</p>
+<p><span class="t">1</span> Q debe estar en <strong>activa</strong>, centrado y ser <strong>estable</strong>.</p>
 </div>
 <div class="caja idea">
-<p><span class="t">2</span> f<sub>o</sub> = 1/(2πRC): ahí la salida es 0,707·Ve (−3 dB) y la fase ±45°.</p>
+<p><span class="t">2</span> La <strong>realimentación</strong> (R<sub>E</sub> o R<sub>C</sub> hacia la base) compensa los cambios de β.</p>
 </div>
 <div class="caja idea">
-<p><span class="t">3</span> Lejos de f<sub>o</sub>, un RC cae <strong>20 dB por década</strong>.</p>
+<p><span class="t">3</span> El <strong>divisor de tensión</strong> es el estándar en amplificadores.</p>
 </div>
 </div>
 </section>
@@ -738,9 +591,9 @@
 <div>
 <p><strong>Para seguir practicando</strong></p>
 <ul>
-<li>Cuaderno de laboratorio y fundamento teórico de la Práctica 1 (Moodle).</li>
+<li>Cuaderno de laboratorio y fundamento teórico de la Práctica 5 (Moodle).</li>
+<li>Repasa la recta de carga y las zonas en la presentación de la Práctica 4.</li>
 <li>Simuladores de circuitos: <a href="https://www.falstad.com/circuit/">Falstad</a>, LTspice o Multisim.</li>
-<li>Hoja de papel semilogarítmico para el Bode.</li>
 </ul>
 <p><strong>Ficha del recurso</strong></p>
 <p>Autora: Cristina Martínez Ruedas (ORCID 0000-0003-0089-1133). Departamento de Ingeniería Electrónica y de Computadores, Universidad de Córdoba. Circuitos y Sistemas Electrónicos, 1.<sup>er</sup> curso del Grado en Ingeniería Informática, EPS de Córdoba. Versión 1.0, octubre de 2026.</p>
@@ -1155,12 +1008,12 @@
       }
     });
     </script>
-    <script>document.body.dataset.pie = "CSE · Práctica 1 · Filtros pasivos RC · EPSC · Universidad de Córdoba";</script>
+    <script>document.body.dataset.pie = "CSE · Práctica 5 · Transistor bipolar II: polarización · EPSC · Universidad de Córdoba";</script>
     <script src="assets/epsc-nav.js"></script>
     <script src="assets/poll.js"></script>
     <script src="assets/sims-comun.js"></script>
-    <script src="assets/sims-p1.js"></script>
-    <script src="assets/sims-p1b.js"></script>
+    <script src="assets/sims-p4.js"></script>
+    <script src="assets/sims-p5.js"></script>
     
 
 </body></html>
