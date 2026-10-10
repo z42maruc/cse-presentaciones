@@ -73,7 +73,7 @@
     const izq = document.createElement('div'), der = document.createElement('div');
     grid.append(izq, der);
     const esp = CSE.canvas(izq, 1060, 270, { label: 'Espectro de entrada y salida del filtro' });
-    const tie = CSE.canvas(izq, 1060, 190, { label: 'Señales de entrada y salida en el tiempo' });
+    const tie = CSE.canvas(izq, 1060, 170, { label: 'Señales de entrada y salida en el tiempo' });
     tie.cv.style.marginTop = '8px';
 
     // panel derecho: retos y audio

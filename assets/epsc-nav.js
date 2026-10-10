@@ -13,7 +13,7 @@
       const titulo = sec.dataset.titulo || (h1 ? h1.textContent : '');
       if (h1) h1.style.display = 'none';
       const stack = sec.parentElement;
-      const items = [...stack.querySelectorAll(':scope > section.level2 h2')].map(h => h.childNodes[0] ? h.childNodes[0].textContent.trim() : h.textContent);
+      const items = [...stack.querySelectorAll(':scope > section.level2 h2')].map(h => { const c = h.cloneNode(true); c.querySelectorAll('.sub').forEach(x => x.remove()); return c.innerHTML.trim(); });
       const w = document.createElement('div');
       w.className = 'seccion-wrap';
       w.innerHTML = `<img class="tri" src="${BASE}img/mosaico-sup.png" alt="">

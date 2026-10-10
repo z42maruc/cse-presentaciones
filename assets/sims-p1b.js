@@ -116,7 +116,7 @@
     root.innerHTML = `<div class="ctl"><label>G = Vs/Ve</label></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center;margin-top:6px">
         <div class="cv"></div>
-        <div><div class="kpi" style="width:100%"><span class="k">Ganancia en decibelios</span><span class="v big" style="font-size:57px"></span></div>
+        <div><div class="kpi" style="width:100%;box-sizing:border-box"><span class="k">Ganancia en decibelios</span><span class="v big" style="font-size:57px"></span></div>
         <div class="ctl" style="margin-top:10px"><label>…o escribe los dB</label><input type="number" step="1" style="width:110px" class="indb"></div>
         <div class="msg info expl"></div></div></div>
       <div class="ctl atajos" style="margin-top:6px"><label>Atajos:</label></div>`;
